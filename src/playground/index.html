@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CleverForm.JS Playground</title>
+
+    <style type="text/css">
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1,
+        h4 {
+            text-align: center;
+            color: grey;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: .75rem;
+            border: 2px solid #c2c2c2;
+            border-radius: 0.3rem;
+
+
+        }
+
+        .form-control {
+            padding: .40rem 0;
+            margin: .40rem 0;
+        }
+
+        /*input{
+			width: 100%;
+		}*/
+
+        .field {
+            color: black;
+            font-size: 22px;
+            border-width: 1px;
+            border-color: black;
+            border-radius: 0.4rem;
+            /*width: 100%;*/
+            width: 300px;
+
+
+        }
+
+        .customErrorField {
+            color: red;
+            font-size: 20px;
+            border-width: 2px;
+            border-color: red;
+            border-radius: 0.4rem;
+
+        }
+
+        h4{
+            color: rgb(85, 85, 247);
+        }
+
+        
+
+        /* CleverForm styles (auto generated) */
+        /* .cf-label-success { color: #837bc9; }
+        .cf-label-error { color: #6adf53; } */
+
+        .fieldSuccess{
+            border-color:rgb(61, 42, 165);
+            border-width: 4px;
+        }
+        .fieldError{
+            border-color:brown;
+            border-width: 4px;
+        }
+
+        .labelSuccess{
+            color: darkblue;
+            font-size: 1rem;;
+        }
+        .labelError{
+            color: brown;
+            font-size: 1rem;;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h4><a href="bootstrap.html" target="_blank">Go to Bootstrap playground</a></h4>
+    <h4><a href="simplest.html" target="_blank">Go to Simplest example</a></h4>
+
+    <div class="container">
+        <h4 id="form1zzzz">Current CleverForm JS Playground</h4>
+
+        <form method="POST" action="toSomething.php" id="form1" autocomplete="off">
+
+            <!-- cf-fields-error-class="customErrorField" -->
+
+
+            <!-- <div class="form-control">
+                <label for="images">Images:</label>
+                <br>
+                <input type="file" id="images" name="images" class="field" multiple>
+            
+                <small style="display: block;" cf-msg="images"></small>
+            
+            </div>
+
+
+            <div class="form-control">
+				<label for="text">Text:</label><br>
+		  		<input type="text" id="text" name="text"><br>
+
+			</div>
+
+            
+                
+            <div class="form-control">
+                <label for="text">Server Ip:</label>
+                <br>
+                <input type="text" id="ip" name="ip" class="field">
+            
+                <small style="display: block;" cf-msg="ip"></small>
+            
+            </div>
+
+            <div class="form-control">
+                <label for="text">First name:</label>
+                <br>
+                <input type="text" id="firstname" name="firstname" class="field">
+            
+                <small style="display: block;" cf-msg="firstname"></small>
+            
+            </div>
+
+            <div class="form-control">
+                <label for="text">Last name:</label>
+                <br>
+                <input type="text" id="lastname" name="lastname" class="field">
+                <small style="display: block;" cf-msg="lastname"></small>
+            
+            </div>
+
+            <div class="form-control">
+                <label for="text">Email:</label>
+                <br>
+                <input type="email" id="email" name="email" class="field">
+                <small style="display: block;" cf-msg="email"></small>
+            
+            </div>
+
+            <div class="form-control">
+                <label for="text">Password:</label>
+                <br>
+                <input type="password" id="password" name="password" class="field">
+                <small style="display: block;" cf-msg="password"></small>
+            
+            </div>
+
+            <div class="form-control">
+                <label for="text">Confirm password:</label>
+                <br>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="field">
+                <small style="display: block;" cf-msg="password_confirmation"></small>
+            
+            </div>
+
+            <div class="form-control">
+                <label for="text">Age:</label>
+                <input type="number" id="age" name="age" step="any">
+                <small style="display: block;" cf-msg="age"></small>
+            
+            </div>
+
+            <div class="form-control">
+                <label for="text">Weight:</label>
+                <input type="range" id="weight" name="weight" min="0" max="10">
+                <small style="display: block;" cf-msg="weight"></small>
+            
+            </div> -->
+
+            <div class="form-control">
+                <label for="text">Terms and conditions:</label>
+                <input type="checkbox" id="tac" name="tac">
+                <small style="display: block;" cf-msg="tac"></small>
+            
+            </div>
+        
+           
+
+
+            <div class="form-control">
+                <input type="submit" value="Submit Via Input" cf-submitting-msg='input Please wait...'>
+                <!-- <button type="submit"  cf-submitting-msg='<h1>Submitting...</h1>'><h1>Submit Via Button</h1></button> -->
+                <!-- <button type="submit"
+                    cf-submitting-msg='<img src="https://www.w3schools.com/tags/smiley.gif" alt="Smiley face" width="42" height="42" style="vertical-align:bottom">'>
+                    <h1>Submit Via Button</h1>
+                </button> -->
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- <form method="POST" action="toSomething222222.php" id="form2" autocomplete="off">
+        <input type="submit" value="Submit Via Input" cf-submitting-msg='input Please wait...'>
+    </form> -->
+
+
+
+    <script src="<%= htmlWebpackPlugin.options.cleverFormDir %>"></script>
+    
+</body>
+
+</html>
