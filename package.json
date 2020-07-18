@@ -2,24 +2,40 @@
   "name": "cleverform",
   "version": "0.1.0",
   "description": "An HTML form must have JS library. Simple and elegant validations and more...",
-  "private": true,
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --host 192.168.100.55 --open",
+    "start": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "typedoc": "rm -rf api && npx typedoc --tsconfig",
     "typedocOld": "rm -rf api && npx typedoc --out docs src/docSample",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "src",
+    "dist/*.js",
+  ],
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "git+https://github.com/cleverform-js/cleverform.git"
   },
   "author": "Jose Clet II",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cleverform-js/cleverform/issues"
+  },
+  "homepage": "https://github.com/cleverform-js/cleverform#readme",
+  "keywords": [
+    "form validation",
+    "clever",
+    "clever form",
+    "cleverform",
+    "easy validation",
+    "elegant validation",
+    "simple validation"
+  ],
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.2",
     "html-webpack-plugin": "^4.2.0",
@@ -35,4 +51,5 @@
     "@types/source-map": "^0.5.2",
     "ts-polyfill": "^3.8.2"
   }
+  
 }
