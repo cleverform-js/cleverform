@@ -13,8 +13,8 @@ const AUTHOR = PACKAGE.author;
 module.exports = {
   name: NAME,
   entry: {
-    [`${NAME}-${VERSION}`]: "./src/webpack-entry.ts", // for development, uncompressed
-    [`${NAME}-${VERSION}.min`]: "./src/webpack-entry.ts", // for production, minified
+    [`${NAME}-${VERSION}`]: "./src/index.ts", // for development, uncompressed
+    [`${NAME}-${VERSION}.min`]: "./src/index.ts", // for production, minified
   },
   //   devtool: "inline-source-map",
   // devtool: 'source-map',
