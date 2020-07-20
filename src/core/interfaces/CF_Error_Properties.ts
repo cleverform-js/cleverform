@@ -24,12 +24,12 @@ export interface CF_Error_Properties {
      */
     desciption: string,
 
-    /**
-     * Possible solution how to solve the problem in String array or can be null.
-     * 
-     * Will be loop on displaying possible solution in console.
-     * 
-     */
-    solutions: string[] | null
+    // /**
+    //  * Possible solution how to solve the problem in String array or can be null.
+    //  * 
+    //  * Will be loop on displaying possible solution in console.
+    //  * 
+    //  */
+    // solutions: string[] | null
 
 }

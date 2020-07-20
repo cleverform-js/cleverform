@@ -1,5 +1,5 @@
  import { Error_Code as Ecode, App } from "../global/index";
-import { CF_Error_Properties} from '../interfaces/CF_Error'
+import { CF_Error_Properties} from '../interfaces/CF_Error_Properties'
 
 
 /**
@@ -23,7 +23,6 @@ class CF_Error implements CF_Error_Properties{
         
         this.code = details.code
         this.desciption = details.desciption
-        this.solutions = details.solutions
         
         this.log()
 
@@ -42,29 +41,21 @@ class CF_Error implements CF_Error_Properties{
      */
     public readonly desciption: string;
 
-    /***
-     * The solutions for the error.
-     * Array of strings.
-     * 
-     */
-    public readonly solutions: string[] | null;
 
 
     /**
      * Displaying Error details in Console for fast debugging.
     * 1. Console the Error details.
-    * 2. Display error solutions, if their is available.
+    * 2. Display error solutions link in the documentation with .
     *
     */
     private log(){
 
         // Line 1:  Print error details
-        console.error(`[${App.Initial} warning] : ${this.desciption} ${ this.dynamicMsg || '' }  \n\n [Error Code: ${this.code}]`)
+        console.error(`[${App.Initial} error] : ${this.desciption} ${ this.dynamicMsg || '' }  \n\n [Error Code: ${this.code}]`)
 
-        // Line 2:   Print  possible solutions with warn(orange log) if their is recommended solution
-        if (this.solutions) {
-            console.warn(`Posible solution/s:\n\n- ${this.solutions.join('\n- ')} \n\n`)
-        }
+        // Line 2:   Print solutions link with warn(orange log)
+        console.warn(`Solution/s link : www.cleverform.org/error-code#${this.code}`)
 
     }
 
@@ -82,10 +73,13 @@ class CF_Error implements CF_Error_Properties{
                 return {
                     code: Ecode.Form_Not_Found,
                     desciption: 'Form not found in the DOM with the provided `form id`.',
-                    solutions: [
-                        'Double Check your `form id` in HTML code.',
-                        'Must match the provided `id` propery/element inside `configObject` parameter of `CleverForm(configObject)`.'
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+                    
+                    // solutions: [
+                    //     'Double Check your `form id` in HTML code.',
+                    //     'Must match the provided `id` propery/element inside `configObject` parameter of `CleverForm(configObject)`.'
+                    // ]
                 }
 
             case Ecode.Form_Id_Not_In_Form_Tag:
@@ -93,10 +87,13 @@ class CF_Error implements CF_Error_Properties{
                 return {
                     code: Ecode.Form_Id_Not_In_Form_Tag,
                     desciption: "Provided `form id` was used by non `<form>` tag/element in the DOM.",
-                    solutions: [
-                        'Use your provided `form id` in a `<form>` tag only.',
-                        'Other HTML tag\'s id attribute must NOT be the same by your `form id`.'
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+
+                    // solutions: [
+                    //     'Use your provided `form id` in a `<form>` tag only.',
+                    //     'Other HTML tag\'s id attribute must NOT be the same by your `form id`.'
+                    // ]
                 }
 
             case Ecode.Form_Already_Initialized:
@@ -104,9 +101,12 @@ class CF_Error implements CF_Error_Properties{
                 return {
                     code: Ecode.Form_Already_Initialized,
                     desciption: 'Provided form id was already initialized by other CleverForm instance.',
-                    solutions: [
-                        'Instantiate provided form id only once.',
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+                    
+                    // solutions: [
+                    //     'Instantiate provided form id only once.',
+                    // ]
                 }
 
 
@@ -115,10 +115,13 @@ class CF_Error implements CF_Error_Properties{
                 return {
                     code: Ecode.Constructor_No_New_Keyword,
                     desciption: 'CleverForm is a `constructor` function and should be called with the `new` keyword.',
-                    solutions: [
-                        'Use `new` keyword before `CleverForm` to create a CleverForm instance',
-                        `Example: var myInstance = new CleverForm(dataObject);`,
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+                    
+                    // solutions: [
+                    //     'Use `new` keyword before `CleverForm` to create a CleverForm instance',
+                    //     `Example: var myInstance = new CleverForm(dataObject);`,
+                    // ]
                 }
 
 
@@ -162,12 +165,15 @@ class CF_Error implements CF_Error_Properties{
 
             default:
                 return {
-                    code: Ecode.Unknown_Error_Code,
+                    code: Ecode.Unknown,
                     desciption: "Unknown CleverForm Error detected.",
-                    solutions: [
-                        'Submit issue request to the developer via Github',
-                        `Ask Google :)`
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+
+                    // solutions: [
+                    //     'Submit issue request to the developer via Github',
+                    //     `Ask Google :)`
+                    // ]
                 }
         }
     }

@@ -72,7 +72,7 @@ class CleverForm{
         }catch (error) {
 
             if (!(error instanceof CF_Error) ){
-                new CF_Error( Error_Code.Unknown_Error_Code, error );
+                new CF_Error( Error_Code.Unknown, error );
                 throw error;
             }
 

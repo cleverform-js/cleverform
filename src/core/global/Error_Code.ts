@@ -25,7 +25,7 @@ export enum Error_Code {
      * Submit issue request to the developer via `Github`.
      * 
      */
-    Unknown_Error_Code = 1000,
+    Unknown = 1000,
 
     
     /**
