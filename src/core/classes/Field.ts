@@ -67,6 +67,36 @@ class Field implements FieldInterface{
      * @returns Returns field input/field `value`
      * 
      */
+
+    /**
+     * Set new value of the field depending on the form type/tag
+     * 
+     * @param newVal New value
+     */
+    setVal(val: any): void {
+
+        if (this.type === "checkbox") {
+            
+            if (val === true || val === "on") {
+                this.fieldNode.checked = true;
+            } else if (val === false || val === "off") {
+                this.fieldNode.checked = false;
+            }else{
+                //must be improved with CF warning
+                console.warn("[CF warn:] Setting checkbox value options : true , 'on' , false and 'off'")
+            }
+        } else if (this.type === "email" && this.fieldNode.multiple) {
+            // TO be developed
+        } else if (this.type === "radio") {
+            // TO be developed
+        } else if (this.tagName === "SELECT" && this.fieldNode.multiple) {
+            // TO be developed
+        }else{
+            this.fieldNode.value = val
+        }
+        
+    }
+
     public val() : string | any[] | FileList | File {
         // alert(this.type)
         //do not trim since other part of the app may need the raw string.

@@ -49,7 +49,23 @@ class CleverForm{
                 }
             })
             
-            formCollections.addNewForm(config)
+            const cfData = formCollections.addNewForm(config);
+            const fields = cfData.fields;
+
+            console.log(fields)
+
+            for (const fieldName in fields) {
+                if (Object.prototype.hasOwnProperty.call(fields, fieldName)) {
+                    
+                    Object.defineProperty(this, fieldName, {
+                        get() { return fields[fieldName].val() },
+                        set(newVal) { return fields[fieldName].setVal(newVal) },
+                    });
+
+                    // console.log(fieldName)
+                    
+                }
+            }
 
             Object.freeze(this)
 
