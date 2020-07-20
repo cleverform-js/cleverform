@@ -3,6 +3,8 @@
 /**
  * This is an comprehensive documentation of {@link CleverForm | CleverForm's} error codes.
  * 
+ * CF errors interfere and stop the Cleverform execution at runtime and spit the error message with its code in the browsers console.
+ * 
  * Error codes are logged in the browsers console when an error is detected.
  * They are `hint` for the errors occured in the library.
  * 
@@ -25,6 +27,7 @@ export enum Error_Code {
      * Submit issue request to the developer via `Github`.
      * 
      */
+    // 1000 is the start of Error codes
     Unknown = 1000,
 
     
@@ -142,5 +145,16 @@ export enum Error_Code {
      * ```
      * 
      */
-    Form_Already_Initialized ,  // = 'Form_Already_Initialized',
+    Form_Already_Initialized,  // = 'Form_Already_Initialized',
+
+    /**
+     * Unknow rule name used
+     */
+    Unknown_Rule, 
+    
+    /**
+     * The passed parameter in the rule is mismatch to the desired typed.
+     * Mostly used in the rules ts files
+     */
+    Wrong_Rule_Param_Type,
 }

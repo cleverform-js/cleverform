@@ -71,6 +71,7 @@ class CleverForm{
 
         }catch (error) {
 
+            // if CF unknown error caught
             if (!(error instanceof CF_Error) ){
                 new CF_Error( Error_Code.Unknown, error );
                 throw error;

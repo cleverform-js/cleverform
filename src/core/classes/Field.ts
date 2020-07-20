@@ -5,6 +5,8 @@ import Label from "./Label";
 import { CleverFormData } from "./CleverFormData";
 import { Default } from "../global/Default";
 import { errorMessagesTemplate } from "../assets/errorMessagesTemplate";
+import { Error_Code } from "../global/Error_Code";
+import CF_Error from "./CF_Error";
 
 /**
  * Form's Field Objects constructor function.
@@ -281,7 +283,7 @@ class Field implements FieldInterface{
 
         } else {
 
-            throw (`${ruleName} rule does not exists`)
+            throw new CF_Error(Error_Code.Unknown_Rule, `${ruleName} rule does not exists`);
 
             //  unknown rules , display all possible rules for `Tips` helper
 

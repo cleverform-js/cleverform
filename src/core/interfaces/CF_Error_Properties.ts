@@ -1,7 +1,7 @@
 import { Error_Code } from "../global/index";
 
 /**
- * Format of the  CF_Error class properties.
+ * Format of the  {@link CF_Error} class properties.
  * 
  */
 export interface CF_Error_Properties {
@@ -12,24 +12,10 @@ export interface CF_Error_Properties {
      */
     code: Error_Code,
 
-    // /**
-    //  * Error type based on {@link Error_Type}
-    //  * 
-    //  */
-    // type: Error_Type,
-
     /**
      * Detailed description about the {@link Error_Code}
      * 
      */
     desciption: string,
-
-    // /**
-    //  * Possible solution how to solve the problem in String array or can be null.
-    //  * 
-    //  * Will be loop on displaying possible solution in console.
-    //  * 
-    //  */
-    // solutions: string[] | null
 
 }

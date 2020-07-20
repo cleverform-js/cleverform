@@ -3,7 +3,7 @@ import { CF_Error_Properties} from '../interfaces/CF_Error_Properties'
 
 
 /**
- * CleverForm Errors object structure.
+ * CleverForm Error object structure.
  * Instances used to be `thrown` for CF customized error log/display in the console.
  * Thrown instances will be `catch` in the {@link CleverForm.constructor} .
  * 
@@ -13,11 +13,11 @@ class CF_Error implements CF_Error_Properties{
 
     /**
      * Initialize CleverForm Error and automatically log in the console.
-     * @param code Library Error Code based on {@link Error_Code } Enum. It will be use to get errorDetail.
-     * @param dynamicMsgDynamic Message that may contain helpul concrete data about the error.
+     * @param code Library Error Code based on {@link Error_Code } Enum. It will be use to get error details/solutions in the documentation.
+     * @param concreteMsg Message that may contain helpul concrete data about the error.
      * 
      */
-    constructor(code: Ecode, private readonly dynamicMsg?: string) {
+    constructor(code: Ecode, private readonly concreteMsg?: string) {
 
         let details = this.getDetails(code)
         
@@ -29,8 +29,7 @@ class CF_Error implements CF_Error_Properties{
     }
 
     /**
-     * Error code, its value is `number`.
-     * Value must be based on {@link Ecode} Enumeration.
+     * Value must be based on {@link Error_Code} Enumeration.
      * 
      */
     public readonly code: Ecode;
@@ -52,10 +51,10 @@ class CF_Error implements CF_Error_Properties{
     private log(){
 
         // Line 1:  Print error details
-        console.error(`[${App.Initial} error] : ${this.desciption} ${ this.dynamicMsg || '' }  \n\n [Error Code: ${this.code}]`)
+        console.error(`[${App.Initial} error] : ${this.desciption} ${ this.concreteMsg || '' }[Error Code: ${this.code}]`)
 
-        // Line 2:   Print solutions link with warn(orange log)
-        console.warn(`Solution/s link : www.cleverform.org/error-code#${this.code}`)
+        // Line 2:   Print solutions link with warn(yellow log)
+        console.warn(`Read more: www.cleverform.org/error-code#${this.code}`)
 
     }
 
@@ -117,51 +116,22 @@ class CF_Error implements CF_Error_Properties{
                     desciption: 'CleverForm is a `constructor` function and should be called with the `new` keyword.',
 
                     // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
-                    
+
                     // solutions: [
                     //     'Use `new` keyword before `CleverForm` to create a CleverForm instance',
                     //     `Example: var myInstance = new CleverForm(dataObject);`,
                     // ]
                 }
+            
+            case Ecode.Unknown_Rule:
+
+                return {
+                    code: Ecode.Unknown_Rule,
+                    desciption: 'Unknow validation rule used'
+                }
 
 
-            // case Error_Code:
-
-            //     return {
-            //         code: Error_Code,
-            //         type: Error_Type,
-            //         desciption: "",
-            //         solutions: [
-            //             ``,
-            //         ]
-            //     }
-
-
-            // case Error_Code:
-
-            //     return {
-            //         code: Error_Code,
-            //         type: Error_Type,
-            //         desciption: "",
-            //         solutions: [
-            //             ``,
-            //         ]
-            //     }
-
-
-            // case Error_Code:
-
-            //     return {
-            //         code: Error_Code,
-            //         type: Error_Type,
-            //         desciption: "",
-            //         solutions: [
-            //             ``,
-            //         ]
-            //     }
-
-
-
+                
 
             default:
                 return {
