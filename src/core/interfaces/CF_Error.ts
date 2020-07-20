@@ -1,4 +1,4 @@
-import { Error_Type, Error_Code } from "../global/index";
+import { Error_Code } from "../global/index";
 
 /**
  * Format of the  CF_Error class properties.
@@ -12,11 +12,11 @@ export interface CF_Error_Properties {
      */
     code: Error_Code,
 
-    /**
-     * Error type based on {@link Error_Type}
-     * 
-     */
-    type: Error_Type,
+    // /**
+    //  * Error type based on {@link Error_Type}
+    //  * 
+    //  */
+    // type: Error_Type,
 
     /**
      * Detailed description about the {@link Error_Code}

@@ -1,4 +1,4 @@
- import { Error_Code as Ecode, Error_Type as Etype, App } from "../global/index";
+ import { Error_Code as Ecode, App } from "../global/index";
 import { CF_Error_Properties} from '../interfaces/CF_Error'
 
 
@@ -22,7 +22,6 @@ class CF_Error implements CF_Error_Properties{
         let details = this.getDetails(code)
         
         this.code = details.code
-        this.type = details.type
         this.desciption = details.desciption
         this.solutions = details.solutions
         
@@ -36,14 +35,6 @@ class CF_Error implements CF_Error_Properties{
      * 
      */
     public readonly code: Ecode;
-    
-    /**
-     * Error type, its value is `string`.
-     * Value must be based on {@link Etype} Enumeration.
-     * 
-     */
-
-    public readonly type: Etype;
 
     /**
      * Error descriptions based on {@link CF_Error.code | code}
@@ -68,7 +59,7 @@ class CF_Error implements CF_Error_Properties{
     private log(){
 
         // Line 1:  Print error details
-        console.error(`[${App.Initial} warning] : ${this.desciption} ${ this.dynamicMsg || '' }  \n\n [Error Code: ${this.code}] - ${this.type}`)
+        console.error(`[${App.Initial} warning] : ${this.desciption} ${ this.dynamicMsg || '' }  \n\n [Error Code: ${this.code}]`)
 
         // Line 2:   Print  possible solutions with warn(orange log) if their is recommended solution
         if (this.solutions) {
@@ -90,7 +81,6 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Form_Not_Found,
-                    type: Etype.Init_Error,
                     desciption: 'Form not found in the DOM with the provided `form id`.',
                     solutions: [
                         'Double Check your `form id` in HTML code.',
@@ -102,7 +92,6 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Form_Id_Not_In_Form_Tag,
-                    type: Etype.Init_Error,
                     desciption: "Provided `form id` was used by non `<form>` tag/element in the DOM.",
                     solutions: [
                         'Use your provided `form id` in a `<form>` tag only.',
@@ -114,7 +103,6 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Form_Already_Initialized,
-                    type: Etype.Init_Error,
                     desciption: 'Provided form id was already initialized by other CleverForm instance.',
                     solutions: [
                         'Instantiate provided form id only once.',
@@ -126,7 +114,6 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Constructor_No_New_Keyword,
-                    type: Etype.Init_Error,
                     desciption: 'CleverForm is a `constructor` function and should be called with the `new` keyword.',
                     solutions: [
                         'Use `new` keyword before `CleverForm` to create a CleverForm instance',
@@ -176,7 +163,6 @@ class CF_Error implements CF_Error_Properties{
             default:
                 return {
                     code: Ecode.Unknown_Error_Code,
-                    type: Etype.Unknown_Error,
                     desciption: "Unknown CleverForm Error detected.",
                     solutions: [
                         'Submit issue request to the developer via Github',

@@ -25,7 +25,7 @@ export enum Error_Code {
      * Submit issue request to the developer via `Github`.
      * 
      */
-    Unknown_Error_Code = 'Unknown_Error_Code',
+    Unknown_Error_Code = 1000,
 
     
     /**
@@ -50,7 +50,7 @@ export enum Error_Code {
      * ```
      * 
      */
-    Constructor_No_New_Keyword = 'Constructor_No_New_Keyword',
+    Constructor_No_New_Keyword ,    // = 'Constructor_No_New_Keyword',
 
 
     /**
@@ -81,7 +81,7 @@ export enum Error_Code {
      *                });
      * ```
      */
-    Form_Not_Found = 'Form_Not_Found',
+    Form_Not_Found ,    // = 'Form_Not_Found',
 
     /**
      * Provided `form id` was used by non `<form>` tag/element in the DOM.
@@ -111,7 +111,7 @@ export enum Error_Code {
      * 
      * 
      */
-    Form_Id_Not_In_Form_Tag = 'Form_Id_Not_In_Form_Tag',
+    Form_Id_Not_In_Form_Tag ,   // = 'Form_Id_Not_In_Form_Tag',
 
     /**
      * Provided `form id` was already initialized by other {@link CleverForm} instance.
@@ -142,5 +142,5 @@ export enum Error_Code {
      * ```
      * 
      */
-    Form_Already_Initialized = 'Form_Already_Initialized',
+    Form_Already_Initialized ,  // = 'Form_Already_Initialized',
 }
