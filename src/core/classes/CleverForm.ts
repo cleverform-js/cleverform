@@ -112,8 +112,9 @@ class CleverForm{
 
     public id!: any;
 
+    
     /**
-     * Trigger CleverFormData form validation at runtime.
+     * Trigger CleverFormData form validation at runtime with out button on click.
      * 
      */
 
@@ -123,7 +124,7 @@ class CleverForm{
 
 
     /**
-     * Reset the form, remove the error messages in the DOM and return the data that are reset.
+     * Reset the form, remove the error messages in the DOM and return the data object that are reset.
      * 
      */
 
@@ -136,7 +137,7 @@ class CleverForm{
      * Return the unvalidated form fields data.
      * 
      */
-    
+
     public rawData() {
         return formCollections.forms[this.id].getData()
 
