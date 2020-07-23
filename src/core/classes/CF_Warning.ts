@@ -84,4 +84,4 @@ class CF_Warning implements CF_Warning_Properties{
 
 }
 
-export default CF_Error
+export default CF_Warning
