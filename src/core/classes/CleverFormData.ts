@@ -6,7 +6,7 @@ import { InternalProperties } from '../interfaces/InternalProperties';
 import { formCollections } from '../states/index';
 
 // types
-import { FormSettings, FormStates, FormFields, ValidatedData, FieldErrors } from '../types/index';
+import { FormSettings, FormStates, FormFields, FormValData, FieldErrors } from '../types/index';
 import CF_Error from './CF_Error';
 import Field from './Field';
 import { Default } from '../global/Default';
@@ -421,23 +421,27 @@ export class CleverFormData extends EventEmitter implements InternalProperties{
    }
 
    /**
-    * Get the validated form fields data/value
+    * Get the form data, fields data/value
     * 
+    * @param onlyValidated Set true to return the validated data only( fields with out error). Default is false.
     */
-   public getValidatedData(): ValidatedData{
+   public getData(onlyValidated : boolean = false): FormValData{
 
-      let data: ValidatedData = {};
+      let data: FormValData = {};
 
       for (const fieldName in this.fields) {
 
          //Double check if not from prototype
          if (this.fields.hasOwnProperty(fieldName)) {
-            const field = this.fields[fieldName];
 
-            //add if there is no validation error
-            if (!field.validationError) {
-               data[fieldName] = field.val();
+            const field = this.fields[fieldName];
+            
+            //if onlyValidated is TRUE and the field has validation error, automatically break the loop so that the field value will not be included in the data to be returned.
+            if (onlyValidated && field.validationError){
+               break;
             }
+
+            data[fieldName] = field.val();
 
          }
       }
@@ -452,7 +456,7 @@ export class CleverFormData extends EventEmitter implements InternalProperties{
     * Ready form data for XHR AJAX FETCH
     * 
     */
-   public getFormData() : FormData {
+   public getFormData() : FormValData {
       return new FormData(this.formNode);
    }
 
@@ -482,76 +486,112 @@ export class CleverFormData extends EventEmitter implements InternalProperties{
    }
 
    /**
-    * Set form Submit Listener
+    * Set form Submit Listener, That trigger {@link CleverFormData.validate | validate} method
     * 
     */
    private setSubmitListener(){
 
-      let that = this
+      // let that = this
 
-      this.formNode.addEventListener('submit', function (e) {
+      this.formNode.addEventListener('submit', (e) => {
          e.preventDefault();
 
-         //reset
-         that.focusedField = null;
-
-         that.states.isSubmitting = true;
-         that.submitBtn.reRender()
-         
-         /**
-          * All field validations, Field instances responsiblity, once error is detected, Field's will generate and display error in DOM.
-          */
-         that.validateAllFields()
-
-         let errorsCount = that.getFieldsErrorCount();
-
-         
-
-
-            // check  if has no error
-            if (errorsCount === 0) {
-
-               console.warn("Success! no error!, delay of : " + (that.settings?.submitDelay || Default.Submit_Delay))
-               
-               //delay depends on submit delay
-               setTimeout(function () {
-
-                  // invoke onSuccess callback if exists , form will be possibly submitted via AJAX or fetch,
-                  if (that?.formEvents?.onSuccess) {
-                     that.$emit(Form.onSuccess, [that.getValidatedData(), that.getFormData(), that.runNativeSubmit.bind(that)]);
-
-                     that.states.isSubmitting = false;
-                     that.submitBtn.reRender()
-                     // how about the button here? still enable?
-                  } else {
-                     // Submit form via a normal form submition POST/GET , For PHP server 
-                     // Form without 'onSuccess' callback is intended for submitting form to a server, not by Ajax
-                     that.runNativeSubmit()
-                     // the submit button still disabled
-                     // avoid the user to double submit the form specially if the user internet is slow
-                  }
-
-               }, that.settings?.submitDelay || Default.Submit_Delay);
-
-
-            } else {
-               
-               // with errors
-               
-               that.states.attemptsWithError++;
-
-               that.$emit( Form.onError, [that.getFieldsError(), errorsCount, that.states.attemptsWithError] );
-
-               that.states.isSubmitting = false;
-               that.submitBtn.reRender()
-
-            }
-
-            
-         
+         // this.formNode.reset()
+         this.startValidate()
          
       })
    }
+
+
+   /**
+    * Validate the form via:
+    * 
+    * 1. when called via form submit listener
+    * 2. running Cleverform.validate() method facade
+    * 
+    */
+   public startValidate() {
+      
+      //reset
+      this.focusedField = null;
+
+      this.states.isSubmitting = true;
+      this.submitBtn.reRender()
+
+      /**
+       * All field validations, Field instances responsiblity, once error is detected, Field's will generate and display error in DOM.
+       */
+      this.validateAllFields()
+
+      let errorsCount = this.getFieldsErrorCount();
+
+
+
+
+      // check  if has no error
+      if (errorsCount === 0) {
+
+         console.warn("Success! no error!, delay of : " + (this.settings?.submitDelay || Default.Submit_Delay))
+
+         //delay depends on submit delay
+         setTimeout(() => {
+
+            // invoke onSuccess callback if exists , form will be possibly submitted via AJAX or fetch,
+            if (this?.formEvents?.onSuccess) {
+               this.$emit(Form.onSuccess, [this.getData(true), this.getFormData(), this.runNativeSubmit.bind(this)]);
+
+               this.states.isSubmitting = false;
+               this.submitBtn.reRender()
+               // how about the button here? still enable?
+            } else {
+               // Submit form via a normal form submition POST/GET , For PHP server 
+               // Form without 'onSuccess' callback is intended for submitting form to a server, not by Ajax
+               this.runNativeSubmit()
+               // the submit button still disabled
+               // avoid the user to double submit the form specially if the user internet is slow
+            }
+
+         }, this.settings?.submitDelay || Default.Submit_Delay);
+
+
+      } else {
+
+         // with errors
+
+         this.states.attemptsWithError++;
+
+         this.$emit(Form.onError, [this.getFieldsError(), errorsCount, this.states.attemptsWithError]);
+
+         this.states.isSubmitting = false;
+         this.submitBtn.reRender()
+
+      }
+   }
+
+   /**
+    * Reset the form and return the data
+    */
+   public reset() {
+      
+      let rawData = this.getData(false)
+      this.formNode.reset()
+
+      for (const fieldName in this.fields) {
+         //Double check if not from prototype
+         if (this.fields.hasOwnProperty(fieldName)) {
+            const field = this.fields[fieldName];
+            field.clean();
+         }
+      }
+
+      return rawData;
+
+   }
+
+   
+
+
+   
 
 
  }

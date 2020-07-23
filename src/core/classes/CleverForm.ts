@@ -16,6 +16,8 @@ cssDomInjector();
 /**
  * 
  * Constructor function for creating CleverForm Instance.
+ * This the library facade, all public API is here.
+ * 
  * When having multiple form in a page, every HTML form must be initialized separately.
  * 
  * @Example 
@@ -25,6 +27,8 @@ cssDomInjector();
  * ```
  * 
  * @Note Dont forget to use the `new` keyword prefix in instantiation.
+ * 
+ * @Note All codes must only be inside the constructor function because if not everything will be exposed in the library facade.
  * 
  */
 
@@ -52,7 +56,10 @@ class CleverForm{
             const cfData = formCollections.addNewForm(config);
             const fields = cfData.fields;
 
+            // to be removed
             console.log(fields)
+
+            // Adding getters and setters facade for every field in the form
 
             for (const fieldName in fields) {
                 if (Object.prototype.hasOwnProperty.call(fields, fieldName)) {
@@ -66,6 +73,27 @@ class CleverForm{
                     
                 }
             }
+
+            // Adding validate() that trigger CleverForm.startValidate() method
+                // Object.defineProperty(this, 'validate', {
+                //     get() {
+                //         // return a  function to be executed
+                //         return function () {
+                //             cfData.startValidate()
+                //         }
+                //     },
+                // });
+
+
+            // Adding reset() that trigger CleverForm.startValidate() method
+                // Object.defineProperty(this, 'reset', {
+                //     get() {
+                //         // return a  function to be executed
+                //         return function () {
+                //             return cfData.reset()
+                //         }
+                //     },
+                // });
 
             Object.freeze(this)
 
@@ -83,6 +111,36 @@ class CleverForm{
     }
 
     public id!: any;
+
+    /**
+     * Trigger CleverFormData form validation at runtime.
+     * 
+     */
+
+    public validate() {
+        formCollections.forms[this.id].startValidate()
+    }
+
+
+    /**
+     * Reset the form, remove the error messages in the DOM and return the data that are reset.
+     * 
+     */
+
+    public reset() {
+        return formCollections.forms[this.id].reset()
+
+    }
+
+    /**
+     * Return the unvalidated form fields data.
+     * 
+     */
+    
+    public rawData() {
+        return formCollections.forms[this.id].getData()
+
+    }
 
 
 

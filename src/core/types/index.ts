@@ -124,9 +124,9 @@ export type ErrorMessagesTemplate = {
 export type FieldErrors = { [fieldName: string]: string };
 
 /**
- * Produce form field's validated data structure.
+ * Produce form field's unvalidated/validated data structure.
  */
-export type ValidatedData = { [fieldName: string]: any };
+export type FormValData = { [fieldName: string]: any };
 
 
 

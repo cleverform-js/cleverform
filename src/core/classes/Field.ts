@@ -316,6 +316,14 @@ class Field implements FieldInterface{
         this.validationError = null;
     }
 
+    /**
+     * Remove the Error of the Field instance and remove the error message in the DOM.
+     */
+    public clean(){
+        this.emptyError();
+        this.displayMsg();
+    }
+
 
     /**
      * Perform validation in every field validation {@link Field.rules | rules } supplied.

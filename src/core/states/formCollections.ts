@@ -14,10 +14,10 @@ class FormCollections {
      * The oject constainer of all data/states of CleverForm instances.
      * [formId] : [form data object] pairs.
      */
-    private formCollections: any;
+    public forms: { [formId: string]: CleverFormData};
 
     private constructor() {
-        this.formCollections = {};
+        this.forms = {};
     }
 
     /**
@@ -29,7 +29,7 @@ class FormCollections {
 
     public addNewForm(config: Configuration): CleverFormData {
         // validations are in FormData constructor
-        return this.formCollections[config.id] = new CleverFormData(config)
+        return this.forms[config.id] = new CleverFormData(config)
 
         //to be deleted!! // for testing only
         // console.warn(`Current collection (${Object.keys(this.formCollections).length }):`, this.formCollections )
@@ -52,7 +52,7 @@ class FormCollections {
      */
     public formExist( formId: string ) : boolean{
 
-        return this.formCollections[formId] ? true : false;
+        return this.forms[formId] ? true : false;
     }
 
     /**
