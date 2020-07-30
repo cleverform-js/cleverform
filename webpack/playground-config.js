@@ -17,6 +17,7 @@ module.exports = {
 
   entry: {
     index: [playgroundDir + "js/index.js"],
+    basic: [playgroundDir + "js/basic.js"],
     bootstrap: [playgroundDir + "js/bootstrap-validation.js"],
     simplest: [playgroundDir + "js/simplest.js"],
   },
@@ -44,6 +45,15 @@ module.exports = {
       filename: "index.html",
       template: playgroundDir + "index.html",
       chunks: ["index"],
+      cleverFormDir: cleverFormDir,
+      minify: false,
+    }),
+
+    //basic sample
+    new HTMLWebpackPlugin({
+      filename: "basic.html",
+      template: playgroundDir + "basic.html",
+      chunks: ["basic"],
       cleverFormDir: cleverFormDir,
       minify: false,
     }),

@@ -88,7 +88,7 @@ var h3 = document.getElementsByTagName("h3")[0];
 
 h3.addEventListener('click', function(e) {
 
-    const rawData = regForm.rawData();
+    const rawData = regForm.reset();
     console.log(rawData)
     
 })
