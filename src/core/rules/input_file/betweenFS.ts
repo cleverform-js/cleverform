@@ -5,11 +5,11 @@ import { isPositive, fileSizeUnits, convertFileSize } from "../../util/index";
 /**
  * Between File Size
  * 
- * The selected file under validation must have file size between specified .
+ * The selected file under validation must have a file size between specified.
  *
  * Min and max are inclusive!
  * 
- * If the file input tag is MULTIPLE, this rule apply for every selected file ( File in FileList)
+ * If the file input tag is MULTIPLE, this rule applies for every selected file (File in FileList)
  *
  */
 export const betweenFS: RuleObject = {

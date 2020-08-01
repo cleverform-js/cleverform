@@ -5,7 +5,7 @@ import { isPositive, fileSizeUnits, convertFileSize } from "../../util/index";
 /**
  * Maximum File Size
  * 
- * The selected file under validation must have a maximum file size of the specified max size. (per selected file).
+ * The selected file under validation must have a maximum file size of the specified max size parameter. (per selected file).
  *
  */
 export const maxFS: RuleObject = {

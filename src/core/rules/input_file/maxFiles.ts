@@ -5,7 +5,7 @@ import { isPositive, isPositiveInt } from "../../util/index";
 /**
  * Maximum Selected files
  * 
- * Selected files must be less than or equl to Maximum files;
+ * Selected files must be less than or equl to max files.
  *
  */
 export const maxFiles: RuleObject = {
