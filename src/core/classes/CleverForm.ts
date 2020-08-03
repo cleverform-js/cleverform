@@ -74,27 +74,6 @@ class CleverForm{
                 }
             }
 
-            // Adding validate() that trigger CleverForm.startValidate() method
-                // Object.defineProperty(this, 'validate', {
-                //     get() {
-                //         // return a  function to be executed
-                //         return function () {
-                //             cfData.startValidate()
-                //         }
-                //     },
-                // });
-
-
-            // Adding reset() that trigger CleverForm.startValidate() method
-                // Object.defineProperty(this, 'reset', {
-                //     get() {
-                //         // return a  function to be executed
-                //         return function () {
-                //             return cfData.reset()
-                //         }
-                //     },
-                // });
-
             Object.freeze(this)
 
         }catch (error) {
@@ -113,6 +92,12 @@ class CleverForm{
     public id!: any;
 
     
+    /**
+     *  --------------------------------------------------------------------------------
+     *          Static Public methods API
+     *  --------------------------------------------------------------------------------
+     */
+
     /**
      * Trigger CleverFormData form validation at runtime with out button on click.
      * 
