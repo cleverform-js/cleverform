@@ -5,6 +5,17 @@
 // console.log("CleverForm");
 // console.log(CleverForm.createRule);
 
+
+// create custom rules
+CleverForm.addRule({
+  name: "walaLangs",
+  validate: function (value) {
+    return false;
+  },
+  errorMessage: "The :fieldName field is Wala langs!!!!!!! hahah.",
+});
+
+
 var form1 = new CleverForm({
   id: "form1",
   rules: {
@@ -13,7 +24,7 @@ var form1 = new CleverForm({
     //
     firstname: "required|integer|positive", //"betweenLen:2,5 | alpha",
     lastname: "minLen:1|maxLen:15|alphaDash",
-    tac: "accepted",
+    tac: "walaLangs ",
     email: "email",
     password: "required",
     password_confirmation: "required|matched:password",
@@ -81,13 +92,11 @@ var form1 = new CleverForm({
   //   labelError : 'labelError',
   // }
 
-  
-  settings : {
+  settings: {
     // submitDelay : 1000 , // this does not go to submit delay! goes to submitButton Delay,,, name must be changed?
     // lang : 'en',
     // injectAttribute : true,
-  }
-
+  },
 });
 
 // console.log("==============================");

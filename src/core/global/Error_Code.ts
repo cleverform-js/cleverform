@@ -157,4 +157,12 @@ export enum Error_Code {
      * Mostly used in the rules ts files
      */
     Wrong_Rule_Param_Type,
+
+    /**
+     * Adding validation rule error
+     * 
+     * The {@link ValidationRule.addRule } method is trying to add a rulename that already exists.
+     * 
+     */
+    Rules_Collision,
 }

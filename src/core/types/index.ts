@@ -70,9 +70,9 @@ export type RuleObject = {
     name : string ,
 
     /**
-     * True if the validation rules is default in the library.
+     * True if the validation rules is default/built-in in the library.
      * 
-     * Otherwise, validation rule is added by the developer.
+     * Otherwise, validation rule is a customized validation rule.
      * 
      */
     default : boolean,
@@ -100,6 +100,31 @@ export type RuleObject = {
      * 
      */
     validate: (value: any, params: serializedParam, fieldNode?: HTMLInputElement, field? : Field) => boolean;
+}
+
+
+/**
+ * Structure of a customized validation rule object, almost same like RuleObject above
+ * 
+ */
+export type CustomRuleObject = {
+
+    /**
+     * Validation rule name.
+     */
+    name: string,
+
+    /**
+     * @param value The field value to be validated
+     * @returns Return TRUE if the value in the param passed the validation rule, else return FALSE
+     * 
+     */
+    validate: (value: any) => boolean, // `  params: serializedParam, fieldNode?: HTMLInputElement, field?: Field ` will be added when the custom validation rule 
+
+    /**
+     * The custom error message of the validation rule
+     */
+    errorMessage : string
 }
 
 

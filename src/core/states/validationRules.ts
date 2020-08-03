@@ -1,5 +1,7 @@
 import { Rules, RuleObject } from "../types/index";
 import * as R from "../rules/index";
+import CF_Error from "../classes/CF_Error";
+import { Error_Code } from "../global";
 
 /**
  * Validation rules container
@@ -105,8 +107,12 @@ class ValidationRule {
             this.rules[ruleObj.name] = ruleObj;
         }else{
             // make a CF error code here!/                    
-            throw `Validation rule ${ruleObj.name} already exists!`;
+            throw new CF_Error(Error_Code.Rules_Collision, `Validation rule ${ruleObj.name} already exists!. Use other name instead.`);
         }
+
+        //to be removed
+        console.clear()
+        console.log(this.rules)
     }
 
 
@@ -132,6 +138,8 @@ class ValidationRule {
  * Storage of all Validation rules[Singleton pattern]
  * 
  */
-const validationRules = ValidationRule.getInstance().rules
 
-export { validationRules }
+const rulesContainer = ValidationRule.getInstance();
+const validationRules = rulesContainer.rules
+
+export { rulesContainer , validationRules }

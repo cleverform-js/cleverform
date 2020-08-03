@@ -380,7 +380,8 @@ class Field implements FieldInterface{
         let lang = this.parentForm.settings?.lang || Default.Lang;
 
         // Error message template depends on the validation rule
-        let errorMsgTemplete = errorMessagesTemplate[lang][ruleName]
+        // the custom template is priority than the `lang`
+        let errorMsgTemplete = errorMessagesTemplate["custom"][ruleName] || errorMessagesTemplate[lang][ruleName]
 
         if (!errorMsgTemplete){
             throw new Error(`'${ruleName}' rule has no error message template defined.(Internal error)`);

@@ -3,6 +3,9 @@ import { formCollections } from '../states/index'
 import { Error_Code } from '../global/index';
 import CF_Error from './CF_Error';
 import { cssDomInjector } from '../assets/cssDomInjector';
+import { CustomRuleObject, RuleObject } from '../types';
+import { rulesContainer } from '../states/validationRules';
+import { addCustomErrorMsg } from '../assets/errorMessagesTemplate';
 
 
 //Inject Css styles in the DOM head style
@@ -94,7 +97,7 @@ class CleverForm{
     
     /**
      *  --------------------------------------------------------------------------------
-     *          Static Public methods API
+     *          Public methods of every CleverForm instance - API
      *  --------------------------------------------------------------------------------
      */
 
@@ -125,6 +128,86 @@ class CleverForm{
 
     public rawData() {
         return formCollections.forms[this.id].getData()
+
+    }
+
+    
+    /**
+     *  --------------------------------------------------------------------------------
+     *          Static Public methods of CleverForm constructor function
+     *  --------------------------------------------------------------------------------
+     */
+
+
+
+    /**
+     * Add customized validation rule
+     * 
+     */
+    public static addRule(ruleObj: CustomRuleObject) {
+
+
+        // validate here ruleObj properties and throw errror if have
+
+        // you must pass an object
+        if (typeof ruleObj !== "object"){ // array is treated as object still,
+            throw new Error(`addRule method is expecting an object parameter. ${typeof ruleObj} is detected.`);
+        }
+
+
+        // ruleObj.name prop must be a string only
+
+        if (typeof ruleObj.name !== "string" || ruleObj.name.trim() == ''){
+            throw new Error("Custom validation rule name must be a valid string");
+            
+        }
+
+        // ruleObj.validate prop must be a function
+
+        if (typeof ruleObj.validate !== "function") { // array is treated as object still,
+            throw new Error(`Custom validation method must be a callback function. ${typeof ruleObj.validate} is detected.`);
+        }
+
+
+        // ruleObj.errorMessage prop must be a string only
+
+        if (typeof ruleObj.errorMessage !== "string" || ruleObj.errorMessage.trim() == '') {
+            throw new Error("Custom error message must be a valid string");
+
+        }
+
+
+
+        // Sanitize
+        const customName = ruleObj.name.trim()
+        const errorMessage = ruleObj.errorMessage.trim()
+
+
+        // Create a customRule based on the `ruleObj`
+        const customRule: RuleObject = {
+
+            name: customName,
+
+            default: false, //built in
+
+            checkAndSerializeParams: function () { //ruleParamsStr, fieldName, field
+                // no ruleParamsStr validation since its a custom rule
+                // custom rule has limited access
+                return null;
+                
+            },
+
+            validate: ruleObj.validate,
+
+        }
+
+
+
+        // Attach now the customized rule
+
+        addCustomErrorMsg(customName, errorMessage)
+        rulesContainer.addRule(customRule)
+        
 
     }
 

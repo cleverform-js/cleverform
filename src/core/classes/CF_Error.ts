@@ -130,6 +130,13 @@ class CF_Error implements CF_Error_Properties{
                     desciption: 'Unknow validation rule used'
                 }
 
+            case Ecode.Rules_Collision:
+
+                return {
+                    code: Ecode.Rules_Collision,
+                    desciption: 'Rule names collision.'
+                }
+
 
                 
 
