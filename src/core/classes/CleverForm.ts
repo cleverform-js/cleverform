@@ -60,7 +60,8 @@ class CleverForm{
             const fields = cfData.fields;
 
             // to be removed
-            console.log(fields)
+            // for debuging
+            // console.log(fields)
 
             // Adding getters and setters facade for every field in the form
 
@@ -146,33 +147,35 @@ class CleverForm{
      */
     public static addRule(ruleObj: CustomRuleObject) {
 
-
+        try {
+            
+        
         // validate here ruleObj properties and throw errror if have
 
         // you must pass an object
         if (typeof ruleObj !== "object"){ // array is treated as object still,
-            throw new Error(`addRule method is expecting an object parameter. ${typeof ruleObj} is detected.`);
+            throw new CF_Error(Error_Code.Custom_Rule_Error, `addRule method is expecting an object parameter. ${typeof ruleObj} is detected.`);
         }
 
 
         // ruleObj.name prop must be a string only
 
         if (typeof ruleObj.name !== "string" || ruleObj.name.trim() == ''){
-            throw new Error("Custom validation rule name must be a valid string");
+            throw new CF_Error(Error_Code.Custom_Rule_Error, `name property must be a valid string`);
             
         }
 
         // ruleObj.validate prop must be a function
 
         if (typeof ruleObj.validate !== "function") { // array is treated as object still,
-            throw new Error(`Custom validation method must be a callback function. ${typeof ruleObj.validate} is detected.`);
+            throw new CF_Error(Error_Code.Custom_Rule_Error, `validate property must be a callback function. ${typeof ruleObj.validate} is detected.`);
         }
 
 
         // ruleObj.errorMessage prop must be a string only
 
         if (typeof ruleObj.errorMessage !== "string" || ruleObj.errorMessage.trim() == '') {
-            throw new Error("Custom error message must be a valid string");
+            throw new CF_Error(Error_Code.Custom_Rule_Error, `errorMessage property must be a valid string`);
 
         }
 
@@ -208,8 +211,11 @@ class CleverForm{
         addCustomErrorMsg(customName, errorMessage)
         rulesContainer.addRule(customRule)
         
+        } catch (error) {
+            
+        }
 
-    }
+    } // addRule ending
 
 
 

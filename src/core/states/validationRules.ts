@@ -111,8 +111,9 @@ class ValidationRule {
         }
 
         //to be removed
-        console.clear()
-        console.log(this.rules)
+        //for debuging
+        // console.clear()
+        // console.log(this.rules)
     }
 
 

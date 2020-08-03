@@ -8,11 +8,20 @@
 
 // create custom rules
 CleverForm.addRule({
-  name: "walaLangs",
+  name: "divisibleBy5",
+  errorMessage: "The :fieldName field must accept number divisible by 5.",
   validate: function (value) {
-    return false;
+
+    const number = parseInt(value);
+
+    // mustr return TRUE or false, omitting it will return undefined and still become false in the end
+    if (number % 5 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+
   },
-  errorMessage: "The :fieldName field is Wala langs!!!!!!! hahah.",
 });
 
 
@@ -24,13 +33,13 @@ var form1 = new CleverForm({
     //
     firstname: "required|integer|positive", //"betweenLen:2,5 | alpha",
     lastname: "minLen:1|maxLen:15|alphaDash",
-    tac: "walaLangs ",
+    tac: "accepted ",
     email: "email",
     password: "required",
     password_confirmation: "required|matched:password",
     age: "required|integer|negative",
     weight: "required|min:8",
-    ip: "ipv4", // ip , ipv4 , ipv6
+    ip: "divisibleBy5", // ip , ipv4 , ipv6
 
     // images: "required|files:audio,video,aa,bb,image,",
     // images: "required | minFS:40 | maxFS: 4.6,MB", //msExcel,msPowerPoint

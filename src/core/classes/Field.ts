@@ -335,17 +335,20 @@ class Field implements FieldInterface{
         this.emptyError()
 
         // Loop every validation rules of the field to be used in validation
-        let rules = this.rules
+        const rules = this.rules
 
         fieldRulesLoop:
         for (let ruleName in rules) {
             if (rules.hasOwnProperty(ruleName)) {
 
-                let value = this.val()
-                let params = rules?.[ruleName]?.params;
+                const value = this.val()
+                const params = rules?.[ruleName]?.params;
 
+                const validationPassed = validationRules[ruleName].validate(value, params, this.fieldNode, this);
+                
                 // Check if the validation rule has no error
-                if (validationRules[ruleName].validate(value, params , this.fieldNode , this) === false) {
+                // `validationPassed === undefined` is resulted by custom validation rule that does not return any boolean on its validate property.
+                if (validationPassed === false || validationPassed === undefined) {
 
                     this.generateErrorMsg(ruleName, params)
 

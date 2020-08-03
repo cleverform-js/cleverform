@@ -51,7 +51,7 @@ class CF_Error implements CF_Error_Properties{
     private log(){
 
         // Line 1:  Print error details
-        console.error(`[${App.Initial} error] : ${this.desciption} ${ this.concreteMsg || '' }[Error Code: ${this.code}]`)
+        console.error(`[${App.Initial} error] : ${this.desciption} ${ this.concreteMsg || '' } [Error Code: ${this.code}]`)
 
         // Line 2:   Print solutions link with warn(yellow log)
         console.warn(`Read more: www.cleverform.org/error-code#${this.code}`)
@@ -127,7 +127,7 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Unknown_Rule,
-                    desciption: 'Unknow validation rule used'
+                    desciption: 'Unknow validation rule used.'
                 }
 
             case Ecode.Rules_Collision:
@@ -135,6 +135,14 @@ class CF_Error implements CF_Error_Properties{
                 return {
                     code: Ecode.Rules_Collision,
                     desciption: 'Rule names collision.'
+                }
+
+            
+            case Ecode.Custom_Rule_Error:
+
+                return {
+                    code: Ecode.Custom_Rule_Error,
+                    desciption: 'Custom validation rule error.'
                 }
 
 

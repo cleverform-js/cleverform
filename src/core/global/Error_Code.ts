@@ -165,4 +165,12 @@ export enum Error_Code {
      * 
      */
     Rules_Collision,
+
+    /**
+     * The object parameter of the Custom rule has a problem on its properties checking data types
+     * 
+     * This error message is reused many times inside the addRule static method
+     * 
+     */
+    Custom_Rule_Error,
 }
