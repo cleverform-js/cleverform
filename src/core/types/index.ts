@@ -127,6 +127,13 @@ export type CustomRuleObject = {
     errorMessage : string
 }
 
+/**
+ * Custom error messages that will override the default error messages
+ */
+export type CustomErrorMessage = {
+    [ruleName : string] : string
+}
+
 
 /**
  * Error msgs template

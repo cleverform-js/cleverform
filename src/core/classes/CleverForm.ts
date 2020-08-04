@@ -3,7 +3,7 @@ import { formCollections } from '../states/index'
 import { Error_Code } from '../global/index';
 import CF_Error from './CF_Error';
 import { cssDomInjector } from '../assets/cssDomInjector';
-import { CustomRuleObject, RuleObject } from '../types';
+import { CustomRuleObject, RuleObject , CustomErrorMessage } from '../types';
 import { rulesContainer } from '../states/validationRules';
 import { addCustomErrorMsg } from '../assets/errorMessagesTemplate';
 
@@ -144,78 +144,130 @@ class CleverForm{
     /**
      * Add customized validation rule
      * 
+     * @param ruleObj rule object with 3 properties, `name`, `errorMessage` and `validate` property.
+     * 
      */
+
     public static addRule(ruleObj: CustomRuleObject) {
 
         try {
             
-        
-        // validate here ruleObj properties and throw errror if have
-
-        // you must pass an object
-        if (typeof ruleObj !== "object"){ // array is treated as object still,
-            throw new CF_Error(Error_Code.Custom_Rule_Error, `addRule method is expecting an object parameter. ${typeof ruleObj} is detected.`);
-        }
-
-
-        // ruleObj.name prop must be a string only
-
-        if (typeof ruleObj.name !== "string" || ruleObj.name.trim() == ''){
-            throw new CF_Error(Error_Code.Custom_Rule_Error, `name property must be a valid string`);
             
-        }
+            // validate here ruleObj properties and throw errror if have
 
-        // ruleObj.validate prop must be a function
-
-        if (typeof ruleObj.validate !== "function") { // array is treated as object still,
-            throw new CF_Error(Error_Code.Custom_Rule_Error, `validate property must be a callback function. ${typeof ruleObj.validate} is detected.`);
-        }
-
-
-        // ruleObj.errorMessage prop must be a string only
-
-        if (typeof ruleObj.errorMessage !== "string" || ruleObj.errorMessage.trim() == '') {
-            throw new CF_Error(Error_Code.Custom_Rule_Error, `errorMessage property must be a valid string`);
-
-        }
+            // you must pass an object
+            if (typeof ruleObj !== "object"){ // array is treated as object still,
+                throw new CF_Error(Error_Code.Custom_Rule_Error, `addRule method is expecting an object parameter. ${typeof ruleObj} is detected.`);
+            }
 
 
+            // ruleObj.name prop must be a string only
 
-        // Sanitize
-        const customName = ruleObj.name.trim()
-        const errorMessage = ruleObj.errorMessage.trim()
-
-
-        // Create a customRule based on the `ruleObj`
-        const customRule: RuleObject = {
-
-            name: customName,
-
-            default: false, //built in
-
-            checkAndSerializeParams: function () { //ruleParamsStr, fieldName, field
-                // no ruleParamsStr validation since its a custom rule
-                // custom rule has limited access
-                return null;
+            if (typeof ruleObj.name !== "string" || ruleObj.name.trim() == ''){
+                throw new CF_Error(Error_Code.Custom_Rule_Error, `name property must be a valid string`);
                 
-            },
+            }
 
-            validate: ruleObj.validate,
+            // ruleObj.validate prop must be a function
 
-        }
+            if (typeof ruleObj.validate !== "function") { // array is treated as object still,
+                throw new CF_Error(Error_Code.Custom_Rule_Error, `validate property must be a callback function. ${typeof ruleObj.validate} is detected.`);
+            }
+
+
+            // ruleObj.errorMessage prop must be a string only
+
+            
 
 
 
-        // Attach now the customized rule
+            // Sanitize
+            const customName = ruleObj.name.trim()
+            const errorMessage = ruleObj.errorMessage.trim()
 
-        addCustomErrorMsg(customName, errorMessage)
-        rulesContainer.addRule(customRule)
+
+            // Create a customRule based on the `ruleObj`
+            const customRule: RuleObject = {
+
+                name: customName,
+
+                default: false, //built in
+
+                checkAndSerializeParams: function () { //ruleParamsStr, fieldName, field
+                    // no ruleParamsStr validation since its a custom rule
+                    // custom rule has limited access
+                    return null;
+                    
+                },
+
+                validate: ruleObj.validate,
+
+            }
+
+
+
+            // Attach now the customized rule
+
+            addCustomErrorMsg(customName, errorMessage)
+            rulesContainer.addRule(customRule)
         
         } catch (error) {
+
+            // if CF unknown error caught
+            if (!(error instanceof CF_Error)) {
+                new CF_Error(Error_Code.Unknown, error);
+                throw error;
+            }
             
         }
 
     } // addRule ending
+
+
+
+
+    /**
+     * Add custom error message on built in validation rules that override the default error message
+     * 
+     * @param CustomErrorMessage 
+     */
+
+    public static customErrorMessage(messageObj: CustomErrorMessage){
+
+        try {
+            
+            // you must pass an object
+            if (typeof messageObj !== "object") { // array is treated as object still,
+                throw new CF_Error(Error_Code.Custom_ErrMsg_Error, `customErrorMessage method is expecting an object parameter. ${typeof messageObj} is detected.`);
+            }
+
+            // loop all rulenames...
+            for (const ruleName in messageObj) {
+                if (messageObj.hasOwnProperty(ruleName)) {
+
+                    const customMessage = messageObj[ruleName];
+
+                    //add a CF_warning here if the rulename deos not exists  built in. Since its useless to override a non existin rule name.
+
+                    // add the custom error message
+                    addCustomErrorMsg(ruleName, customMessage)
+                    
+                }
+            }
+
+        } catch (error) {
+
+            // if CF unknown error caught
+            if (!(error instanceof CF_Error)) {
+                new CF_Error(Error_Code.Unknown, error);
+                throw error;
+            }
+
+        }
+
+        
+
+    } // customErrorMessage end
 
 
 

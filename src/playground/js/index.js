@@ -25,6 +25,15 @@ CleverForm.addRule({
 });
 
 
+// add a custom error message
+
+CleverForm.customErrorMessage({
+  ip: "Di man to pang Ip address hahaha -  :fieldName",
+  accepted: "Tangapin mo ang :fieldName !!!!!!!!!!"
+});
+
+
+
 var form1 = new CleverForm({
   id: "form1",
   rules: {
@@ -39,7 +48,8 @@ var form1 = new CleverForm({
     password_confirmation: "required|matched:password",
     age: "required|integer|negative",
     weight: "required|min:8",
-    ip: "divisibleBy5", // ip , ipv4 , ipv6
+
+    ip: "required | ip", // divisibleBy5 , ip , ipv4 , ipv6
 
     // images: "required|files:audio,video,aa,bb,image,",
     // images: "required | minFS:40 | maxFS: 4.6,MB", //msExcel,msPowerPoint

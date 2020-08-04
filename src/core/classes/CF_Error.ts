@@ -127,7 +127,7 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Unknown_Rule,
-                    desciption: 'Unknow validation rule used.'
+                    desciption: 'Unknown validation rule used.'
                 }
 
             case Ecode.Rules_Collision:
@@ -143,6 +143,13 @@ class CF_Error implements CF_Error_Properties{
                 return {
                     code: Ecode.Custom_Rule_Error,
                     desciption: 'Custom validation rule error.'
+                }
+
+            case Ecode.Custom_ErrMsg_Error:
+
+                return {
+                    code: Ecode.Custom_ErrMsg_Error,
+                    desciption: 'Custom error-message problem.'
                 }
 
 

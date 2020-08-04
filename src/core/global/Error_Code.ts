@@ -173,4 +173,10 @@ export enum Error_Code {
      * 
      */
     Custom_Rule_Error,
+
+    /**
+     * The object parameter of the Custom error message has a problem on its properties checking data types
+     * 
+     */
+    Custom_ErrMsg_Error,
 }

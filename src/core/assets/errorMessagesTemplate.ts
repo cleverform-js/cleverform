@@ -1,4 +1,6 @@
 import { ErrorMessagesTemplate } from "../types/index";
+import CF_Error from "../classes/CF_Error";
+import { Error_Code } from "../global";
 
 /**
  * Error messages string templates.
@@ -79,10 +81,17 @@ import { ErrorMessagesTemplate } from "../types/index";
 /**
  * 
  * @param ruleName The ruleName of the Template
- * @param template String template of the error message
+ * @param message String template of the error message
  */
-function addCustomErrorMsg(ruleName : string ,  template : string){
-    errorMessagesTemplate.custom[ruleName] = template;
+function addCustomErrorMsg(ruleName : string ,  message : string){
+    
+    if (typeof message !== "string" || message.trim() == '') {
+        throw new CF_Error(Error_Code.Custom_ErrMsg_Error, `error message must be a valid string`);
+    }
+
+    errorMessagesTemplate.custom[ruleName] = message;
+
+    console.log(errorMessagesTemplate.custom)
 }
 
 
