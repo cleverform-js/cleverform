@@ -80,8 +80,9 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
 
+  // config object for typedoc
   "typedocOptions": {
-    "name" : "CleverForm API (TS Docs)",
+    "name" : "CleverForm developer's API (TS Docs)",
     // "includeVersion" : true,
     // "inputFiles": ["./src/docSample"],
 
