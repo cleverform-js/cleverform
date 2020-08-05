@@ -5,7 +5,7 @@
 
 # cleverform.js
 
-> 📝 An HTML form must have JS library. Simple and elegant 💕 form validations and more...
+> 📝 CleverForm is a JavaScript library for fast, straightforward and elegant 💕 HTML form validations
 
 
 ## Introduction

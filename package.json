@@ -1,12 +1,12 @@
 {
   "name": "cleverform",
   "version": "0.1.0",
-  "description": "An HTML form must have JS library. Simple and elegant validations and more...",
+  "description": "CleverForm is a JavaScript library for fast, straightforward and elegant HTML form validations.",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development --open-page '/examples' ",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "typedoc": "rm -rf api && npx typedoc --tsconfig",

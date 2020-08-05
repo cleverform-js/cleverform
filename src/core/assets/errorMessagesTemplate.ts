@@ -91,7 +91,8 @@ function addCustomErrorMsg(ruleName : string ,  message : string){
 
     errorMessagesTemplate.custom[ruleName] = message;
 
-    console.log(errorMessagesTemplate.custom)
+    //for debugging....
+    // console.log(errorMessagesTemplate.custom)
 }
 
 
