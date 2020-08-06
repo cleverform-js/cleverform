@@ -77,14 +77,14 @@ var form1 = new CleverForm({
 
   formEvents: {
     onInit: function () {
-      console.warn("onInit : form1 Initialized! ");
+      // console.log("onInit : form1 Initialized! ");
     },
 
     onError: function (errors, errorsCount, attemptsWithError) {
       console.group("With error");
-      console.warn("With " + errorsCount + " error/s");
-      console.warn("With " + attemptsWithError + " attempt/s");
-      console.warn(errors);
+      console.log("With " + errorsCount + " error/s");
+      console.log("With " + attemptsWithError + " attempt/s");
+      console.log(errors);
       console.groupEnd();
     },
 
@@ -119,14 +119,14 @@ var form1 = new CleverForm({
 });
 
 // console.log("==============================");
-console.log(form1);
+// console.log(form1);
 // console.log(form1.id);
 // form1.id = 3333333333333;
 // console.log(form1.id);
 // console.log("getId", form1.getId());
 
 
-console.log("YESSSSSSSSSSSSS!!!!!!!!!!")
+// console.log("YESSSSSSSSSSSSS!!!!!!!!!!")
 
 // var form2 = new CleverForm({
 //   id: "form2",

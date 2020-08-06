@@ -14,12 +14,12 @@ module.exports = {
   name: NAME,
   entry: {
     // with version entry names
-    // [`${NAME}-${VERSION}`]: "./src/index.ts", // for development, uncompressed
-    // [`${NAME}-${VERSION}.min`]: "./src/index.ts", // for production, minified
+    // [`${NAME}-${VERSION}`]: "./src/core/index.ts", // for development, uncompressed
+    // [`${NAME}-${VERSION}.min`]: "./src/core/index.ts", // for production, minified
 
     // with out version names
-    [`${NAME}.dev`]: "./src/index.ts", // for development, uncompressed
-    [`${NAME}.prod.min`]: "./src/index.ts", // for production, minified
+    [`${NAME}.dev`]: "./src/core/index.ts", // for development, uncompressed
+    [`${NAME}.prod.min`]: "./src/core/index.ts", // for production, minified
   },
   //   devtool: "inline-source-map",
   // devtool: 'source-map',
