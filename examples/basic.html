@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cleverform Basic | No CSS Library</title>
+
+    <style type="text/css">
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h3 {
+            text-align: center;
+            color: #00bcd4;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+            border: 2px solid #c2c2c2;
+            border-radius: 0.1rem;
+        }
+
+        .row {
+            margin-bottom: 1rem;
+        }
+
+        .field {
+            color: black;
+            font-size: 22px;
+            border-width: 1px;
+            border-color: black;
+            border-radius: 0.4rem;
+            /* width: 100% !important; */
+            width: 300px;
+
+
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container pt-5">
+    
+        <h3 >
+            Cleverform Basic Example
+            <br/>
+            <small>(No CSS Library)</small>
+        </h3>
+    
+        <form method="POST" id="registrationForm" action="/">
+    
+    
+            <div class="row">
+                <label for="f_name">First name</label>
+                <div >
+                    <input type="text" class="field" id="f_name" name="f_name">
+                    <div cf-msg="f_name"></div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <label for="l_name">Last name</label>
+                <div >
+                    <input type="text" class="field" id="l_name" name="l_name">
+                    <div cf-msg="l_name"></div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <label for="email">Email</label>
+                <div >
+                    <input type="email" class="field" id="email" name="email">
+                    <div cf-msg="email"></div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <label for="password">Password</label>
+                <div >
+                    <input type="password" class="field" id="password" name="password">
+                    <div cf-msg="password"></div>
+    
+                </div>
+            </div>
+    
+            <div class="row">
+                <label for="confirm_password">Confirm password</label>
+                <div >
+                    <input type="password" class="field" id="confirm_password" name="confirm_password">
+                    <div cf-msg="confirm_password"></div>
+    
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-sm-10 offset-sm-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tou_pp" name="tou_pp">
+                        <label class="form-check-label" for="tou_pp">
+                            Accept <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
+                        </label>
+                        <div cf-msg="tou_pp"></div>
+                    </div>
+                </div>
+            </div>
+    
+    
+    
+    
+            <div class="row">
+                <div class="offset-sm-2 col-sm-10">
+    
+                    <button disabled type="submit" class="" cf-submitting-msg='Registering...'>Register</button>
+                </div>
+            </div>
+    
+        </form>
+    
+    </div>
+
+
+    <script src="../dist/cleverform.dev.js"></script>
+
+<script src="/examples/js/basic.js"></script></body>
+
+</html>

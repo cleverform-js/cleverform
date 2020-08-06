@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/4.5.0-bootstrap.min.css">
+    
+    
+    <title>Validation with Bootstrap CSS</title>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <h3 class="text-center">Bootstrap form validation</h3>
+        
+        <form method="POST" id="bootstrapForm" action="http://localhost/form/action_page.php" >
+        
+
+     
+            <div class="form-group row">
+                <label for="f_name" class="col-sm-2 col-form-label">First name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="f_name" name="f_name">
+                    <div cf-msg="f_name"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="l_name" class="col-sm-2 col-form-label">Last name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="l_name" name="l_name">
+                    <div cf-msg="l_name"></div>
+                </div>
+            </div>
+
+
+        
+
+            <div class="form-group row">
+                <label for="age" class="col-sm-2 col-form-label">Age</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="age" name="age">
+                    <div cf-msg="age"></div>
+                </div>
+            </div>
+            
+
+        
+
+            <div class="form-group row">
+                <label for="primary_email" class="col-sm-2 col-form-label">Primary Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" name="primary_email">
+                    <div cf-msg="primary_email"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="other_email" class="col-sm-2 col-form-label">Other Emails</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" name="other_email" multiple>
+                    <div cf-msg="other_email"></div>
+                </div>
+            </div>
+        
+        
+
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password"  name="password">
+                    <div cf-msg="password"></div>
+                    
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="confirm_password" class="col-sm-2 col-form-label">Confirm password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="confirm_password"  name="confirm_password">
+                    <div cf-msg="confirm_password"></div>
+                    
+                </div>
+            </div>
+       
+        
+
+            <div class="form-group row">
+                <label for="address" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                    <div cf-msg="address"></div>
+                </div>
+            </div>
+          
+        
+
+            <div class="form-group row">
+                <label for="pets" class="col-sm-2 col-form-label">Your pets</label>
+                <div class="col-sm-10">
+                    <select class="custom-select" name="pets[]" id="pets" multiple>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="bird">Bird</option>
+                    </select>
+                    <div cf-msg="pets[]"></div>
+            
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="favorite_pet" class="col-sm-2 col-form-label">Favorite Pet</label>
+                <div class="col-sm-10">
+                    <select class="custom-select" name="favorite_pet" id="favorite_pet">
+                        
+                        <option value="">Select pet</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="bird">Bird</option>
+                    </select>
+                    <div cf-msg="favorite_pet"></div>
+            
+                </div>
+            </div>
+
+        
+        
+            
+            <div class="form-group row">
+                    <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                            <label class="form-check-label" for="male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                            <label class="form-check-label" for="female">
+                                Female
+                            </label>
+                        </div>
+                        <div class="form-check">
+
+                            <input class="form-check-input" type="radio" name="gender" id="others" value="others">
+                            <label class="form-check-label" for="others">
+                                Others
+                            </label>
+
+                            <div cf-msg="gender"></div>
+                        </div>
+
+                        
+                        
+                    </div>
+                    
+                
+            </div>
+        
+        
+            
+            <div class="form-group row">
+                <label for="resume" class="col-sm-2 col-form-label">Resume</label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="resume" name="resume">
+                        <label class="custom-file-label" for="resume">Choose resume</label>
+                        <div cf-msg="resume"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="photos" class="col-sm-2 col-form-label">Photos</label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="photos" name="photos[]">
+                        <label class="custom-file-label" for="photos">Choose photos</label>
+                        <div cf-msg="photos[]"></div>
+                    </div>
+                </div>
+            </div>
+
+        
+        
+           
+            <div class="form-group row">
+                <div class="col-sm-2">Accept</div>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tac" name="tac">
+                        <label class="form-check-label" for="tac">
+                            Terms and condition
+                        </label>
+                        <div cf-msg="tac"></div>
+                    </div>
+                </div>
+            </div>
+        
+       
+        
+        <!-- Submit button -->
+
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                    <button disabled type="submit" class="btn btn-primary btn-block" cf-submitting-msg='Signing in...'>Sign in</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script> -->
+
+
+    
+    <script src="../dist/cleverform.dev.js"></script>
+
+<script src="/examples/js/bootstrap.js"></script></body>
+
+</html>

@@ -27,6 +27,7 @@ It's a 1 stop shop javascript library that handles all forms related functionali
 <br/>
 <i>- Douglas Crockford, <a target='_new' title='Book about Javascript'  href='https://www.goodreads.com/book/show/2998152-javascript'>JavaScript: The Good Parts 📖 </a></i> 
 
+<br/>
 One of the most challenging parts of web development is form validations.
 
 __Javascript__ alone has no built-in form validation functionalities.
