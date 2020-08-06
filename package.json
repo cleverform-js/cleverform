@@ -1,22 +1,25 @@
 {
   "name": "cleverform",
   "version": "0.1.0",
-  "description": "An HTML form must have JS library. Simple and elegant validations and more...",
+  "description": "CleverForm is a JavaScript library for fast, straightforward and elegant HTML form validations.",
+  "main": "dist/cleverform.dev.js",
+  "unpkg": "dist/cleverform.dev.js",
+  "jsdelivr": "dist/cleverform.dev.js",
+  "files": [
+    "dist/*.js"
+  ],
+
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development --open-page '/examples' ",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "typedoc": "rm -rf api && npx typedoc --tsconfig",
     "typedocOld": "rm -rf api && npx typedoc --out docs src/docSample",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "files": [
-    "src",
-    "dist/*.js"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cleverform-js/cleverform.git"
@@ -26,12 +29,12 @@
   "bugs": {
     "url": "https://github.com/cleverform-js/cleverform/issues"
   },
-  "homepage": "https://github.com/cleverform-js/cleverform#readme",
+  "homepage": "https://cleverform.netlify.app",
   "keywords": [
+    "cleverform",
     "form validation",
     "clever",
     "clever form",
-    "cleverform",
     "easy validation",
     "elegant validation",
     "simple validation"
@@ -45,9 +48,8 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.10.3",
+    
     "@types/source-map": "^0.5.2",
     "ts-polyfill": "^3.8.2"
   }

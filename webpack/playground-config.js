@@ -6,8 +6,10 @@ const NAME = PACKAGE.name;
 const VERSION = PACKAGE.version;
 const AUTHOR = PACKAGE.author;
 
-// const cleverFormDir = `js/${NAME}-${VERSION}.js`; // the used cleverform in <script> tag, unminified version
-const cleverFormDir = `js/${NAME}-${VERSION}.min.js`; // the used cleverform in <script> tag, minified version
+// const cleverFormDir = `js/${NAME}-${VERSION}.min.js`; // the used cleverform in <script> tag, minified version
+
+const cleverFormDir = `../dist/${NAME}.dev.js`; // the used cleverform in <script> tag, production minified version
+// const cleverFormDir = `../dist/${NAME}.prod.min.js`; // the used cleverform in <script> tag, production minified version
 
 let playgroundDir = "./src/playground/";
 
@@ -17,13 +19,15 @@ module.exports = {
 
   entry: {
     index: [playgroundDir + "js/index.js"],
+    basic: [playgroundDir + "js/basic.js"],
     bootstrap: [playgroundDir + "js/bootstrap-validation.js"],
     simplest: [playgroundDir + "js/simplest.js"],
   },
 
   output: {
-    path: path.resolve(__dirname, "../dist"),
+    path: path.resolve(__dirname, "../examples"),
     filename: "js/[name].js",
+    publicPath: "/examples",
   },
 
   optimization: {
@@ -33,13 +37,16 @@ module.exports = {
   // mode: 'development', // production  // can be blank and be put to npm script like 'webpack --mode production
 
   devServer: {
-    contentBase: "./dist",
-    host: "192.168.100.55",
+    // output.publicPath must be  the same with devServer.publicPath
+    publicPath: "/examples",
+    
+    // contentBase: "./examples",
+    // host: "192.168.100.55",
     //  --host 192.168.100.55 // add this in the package.json for testing in mobile or external device in same network
   },
 
   plugins: [
-    //for copying index HTML from src/playground to dist
+    //for copying index HTML from src/playground to examples
     new HTMLWebpackPlugin({
       filename: "index.html",
       template: playgroundDir + "index.html",
@@ -48,7 +55,16 @@ module.exports = {
       minify: false,
     }),
 
-    //for copying bootstrap HTML from src/playground to dist
+    //basic sample
+    new HTMLWebpackPlugin({
+      filename: "basic.html",
+      template: playgroundDir + "basic.html",
+      chunks: ["basic"],
+      cleverFormDir: cleverFormDir,
+      minify: false,
+    }),
+
+    //for copying bootstrap HTML from src/playground to examples
     new HTMLWebpackPlugin({
       filename: "bootstrap.html",
       template: playgroundDir + "bootstrap.html",
@@ -57,14 +73,14 @@ module.exports = {
       minify: false,
     }),
 
-    // //for copying bootstrap JAVASCRIPT from src/playground/js to dist/js
+    // //for copying bootstrap JAVASCRIPT from src/playground/js to examples/js
     // new HTMLWebpackPlugin({
     //   filename: "js/bootstrap.js",
     //   template: playgroundDir + "js/bootstrap-validation.js",
     //   // minify: false,
     // }),
 
-    //for copying simplest HTML from src/playground to dist
+    //for copying simplest HTML from src/playground to examples
     new HTMLWebpackPlugin({
       filename: "simplest.html",
       template: playgroundDir + "simplest.html",
@@ -73,7 +89,7 @@ module.exports = {
       minify: false,
     }),
 
-    //for copying Bootstrap from css to dist/css
+    //for copying Bootstrap from css to examples/css
     new HTMLWebpackPlugin({
       filename: "css/4.5.0-bootstrap.min.css",
       template: playgroundDir + "css/4.5.0-bootstrap.min.css",

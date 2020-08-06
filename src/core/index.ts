@@ -3,6 +3,6 @@ import 'ts-polyfill';
 
 // export default _CF
 
-import CleverForm from './core/classes/CleverForm'
+import CleverForm from './classes/CleverForm'
 
 export default CleverForm

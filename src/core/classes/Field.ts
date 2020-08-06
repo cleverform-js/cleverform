@@ -5,6 +5,8 @@ import Label from "./Label";
 import { CleverFormData } from "./CleverFormData";
 import { Default } from "../global/Default";
 import { errorMessagesTemplate } from "../assets/errorMessagesTemplate";
+import { Error_Code } from "../global/Error_Code";
+import CF_Error from "./CF_Error";
 
 /**
  * Form's Field Objects constructor function.
@@ -67,6 +69,36 @@ class Field implements FieldInterface{
      * @returns Returns field input/field `value`
      * 
      */
+
+    /**
+     * Set new value of the field depending on the form type/tag
+     * 
+     * @param newVal New value
+     */
+    setVal(val: any): void {
+
+        if (this.type === "checkbox") {
+            
+            if (val === true || val === "on") {
+                this.fieldNode.checked = true;
+            } else if (val === false || val === "off") {
+                this.fieldNode.checked = false;
+            }else{
+                //must be improved with CF warning
+                console.warn("[CF warn:] Setting checkbox value options : true , 'on' , false and 'off'")
+            }
+        } else if (this.type === "email" && this.fieldNode.multiple) {
+            // TO be developed
+        } else if (this.type === "radio") {
+            // TO be developed
+        } else if (this.tagName === "SELECT" && this.fieldNode.multiple) {
+            // TO be developed
+        }else{
+            this.fieldNode.value = val
+        }
+        
+    }
+
     public val() : string | any[] | FileList | File {
         // alert(this.type)
         //do not trim since other part of the app may need the raw string.
@@ -251,7 +283,7 @@ class Field implements FieldInterface{
 
         } else {
 
-            throw (`${ruleName} rule does not exists`)
+            throw new CF_Error(Error_Code.Unknown_Rule, `${ruleName} rule does not exists`);
 
             //  unknown rules , display all possible rules for `Tips` helper
 
@@ -284,6 +316,14 @@ class Field implements FieldInterface{
         this.validationError = null;
     }
 
+    /**
+     * Remove the Error of the Field instance and remove the error message in the DOM.
+     */
+    public clean(){
+        this.emptyError();
+        this.displayMsg();
+    }
+
 
     /**
      * Perform validation in every field validation {@link Field.rules | rules } supplied.
@@ -295,17 +335,20 @@ class Field implements FieldInterface{
         this.emptyError()
 
         // Loop every validation rules of the field to be used in validation
-        let rules = this.rules
+        const rules = this.rules
 
         fieldRulesLoop:
         for (let ruleName in rules) {
             if (rules.hasOwnProperty(ruleName)) {
 
-                let value = this.val()
-                let params = rules?.[ruleName]?.params;
+                const value = this.val()
+                const params = rules?.[ruleName]?.params;
 
+                const validationPassed = validationRules[ruleName].validate(value, params, this.fieldNode, this);
+                
                 // Check if the validation rule has no error
-                if (validationRules[ruleName].validate(value, params , this.fieldNode , this) === false) {
+                // `validationPassed === undefined` is resulted by custom validation rule that does not return any boolean on its validate property.
+                if (validationPassed === false || validationPassed === undefined) {
 
                     this.generateErrorMsg(ruleName, params)
 
@@ -340,7 +383,8 @@ class Field implements FieldInterface{
         let lang = this.parentForm.settings?.lang || Default.Lang;
 
         // Error message template depends on the validation rule
-        let errorMsgTemplete = errorMessagesTemplate[lang][ruleName]
+        // the custom template is priority than the `lang`
+        let errorMsgTemplete = errorMessagesTemplate["custom"][ruleName] || errorMessagesTemplate[lang][ruleName]
 
         if (!errorMsgTemplete){
             throw new Error(`'${ruleName}' rule has no error message template defined.(Internal error)`);

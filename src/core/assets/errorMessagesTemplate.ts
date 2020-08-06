@@ -1,9 +1,11 @@
 import { ErrorMessagesTemplate } from "../types/index";
+import CF_Error from "../classes/CF_Error";
+import { Error_Code } from "../global";
 
 /**
  * Error messages string templates.
  */
-export const errorMessagesTemplate: ErrorMessagesTemplate = {
+ const errorMessagesTemplate: ErrorMessagesTemplate = {
 
     /**
      * English templates
@@ -67,5 +69,31 @@ export const errorMessagesTemplate: ErrorMessagesTemplate = {
 
 
         
+    },
+
+    // custom error message template storage, priority in looking for templates
+    custom : {
+
     }
 };
+
+
+/**
+ * 
+ * @param ruleName The ruleName of the Template
+ * @param message String template of the error message
+ */
+function addCustomErrorMsg(ruleName : string ,  message : string){
+    
+    if (typeof message !== "string" || message.trim() == '') {
+        throw new CF_Error(Error_Code.Custom_ErrMsg_Error, `error message must be a valid string`);
+    }
+
+    errorMessagesTemplate.custom[ruleName] = message;
+
+    //for debugging....
+    // console.log(errorMessagesTemplate.custom)
+}
+
+
+export { errorMessagesTemplate, addCustomErrorMsg};

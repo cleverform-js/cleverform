@@ -1,8 +1,7 @@
 import { RuleObject } from "../../types/index";
 
 /**
- * The field under validation must have a matching field value
- * depending on the given field name to be matched.
+ * The field under validation must have a matching value from another field. Best used in confirm password field.
  * 
  * 
  */

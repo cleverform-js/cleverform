@@ -5,6 +5,35 @@
 // console.log("CleverForm");
 // console.log(CleverForm.createRule);
 
+
+// create custom rules
+CleverForm.addRule({
+  name: "divisibleBy5",
+  errorMessage: "The :fieldName field must accept number divisible by 5.",
+  validate: function (value) {
+
+    const number = parseInt(value);
+
+    // mustr return TRUE or false, omitting it will return undefined and still become false in the end
+    if (number % 5 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+
+  },
+});
+
+
+// add a custom error message
+
+CleverForm.customErrorMessage({
+  ip: "Di man to pang Ip address hahaha -  :fieldName",
+  accepted: "Tangapin mo ang :fieldName !!!!!!!!!!"
+});
+
+
+
 var form1 = new CleverForm({
   id: "form1",
   rules: {
@@ -13,13 +42,14 @@ var form1 = new CleverForm({
     //
     firstname: "required|integer|positive", //"betweenLen:2,5 | alpha",
     lastname: "minLen:1|maxLen:15|alphaDash",
-    tac: "accepted",
+    tac: "accepted ",
     email: "email",
     password: "required",
     password_confirmation: "required|matched:password",
     age: "required|integer|negative",
     weight: "required|min:8",
-    ip: "ipv4", // ip , ipv4 , ipv6
+
+    ip: "required | ip", // divisibleBy5 , ip , ipv4 , ipv6
 
     // images: "required|files:audio,video,aa,bb,image,",
     // images: "required | minFS:40 | maxFS: 4.6,MB", //msExcel,msPowerPoint
@@ -47,14 +77,14 @@ var form1 = new CleverForm({
 
   formEvents: {
     onInit: function () {
-      console.warn("onInit : form1 Initialized! ");
+      // console.log("onInit : form1 Initialized! ");
     },
 
     onError: function (errors, errorsCount, attemptsWithError) {
       console.group("With error");
-      console.warn("With " + errorsCount + " error/s");
-      console.warn("With " + attemptsWithError + " attempt/s");
-      console.warn(errors);
+      console.log("With " + errorsCount + " error/s");
+      console.log("With " + attemptsWithError + " attempt/s");
+      console.log(errors);
       console.groupEnd();
     },
 
@@ -81,24 +111,22 @@ var form1 = new CleverForm({
   //   labelError : 'labelError',
   // }
 
-  
-  settings : {
+  settings: {
     // submitDelay : 1000 , // this does not go to submit delay! goes to submitButton Delay,,, name must be changed?
     // lang : 'en',
     // injectAttribute : true,
-  }
-
+  },
 });
 
 // console.log("==============================");
-console.log(form1);
+// console.log(form1);
 // console.log(form1.id);
 // form1.id = 3333333333333;
 // console.log(form1.id);
 // console.log("getId", form1.getId());
 
 
-console.log("YESSSSSSSSSSSSS!!!!!!!!!!")
+// console.log("YESSSSSSSSSSSSS!!!!!!!!!!")
 
 // var form2 = new CleverForm({
 //   id: "form2",

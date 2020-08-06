@@ -3,6 +3,8 @@
 /**
  * This is an comprehensive documentation of {@link CleverForm | CleverForm's} error codes.
  * 
+ * CF errors interfere and stop the Cleverform execution at runtime and spit the error message with its code in the browsers console.
+ * 
  * Error codes are logged in the browsers console when an error is detected.
  * They are `hint` for the errors occured in the library.
  * 
@@ -25,7 +27,8 @@ export enum Error_Code {
      * Submit issue request to the developer via `Github`.
      * 
      */
-    Unknown_Error_Code = 'Unknown_Error_Code',
+    // 1000 is the start of Error codes
+    Unknown = 1000,
 
     
     /**
@@ -50,7 +53,7 @@ export enum Error_Code {
      * ```
      * 
      */
-    Constructor_No_New_Keyword = 'Constructor_No_New_Keyword',
+    Constructor_No_New_Keyword ,    // = 'Constructor_No_New_Keyword',
 
 
     /**
@@ -81,7 +84,7 @@ export enum Error_Code {
      *                });
      * ```
      */
-    Form_Not_Found = 'Form_Not_Found',
+    Form_Not_Found ,    // = 'Form_Not_Found',
 
     /**
      * Provided `form id` was used by non `<form>` tag/element in the DOM.
@@ -111,7 +114,7 @@ export enum Error_Code {
      * 
      * 
      */
-    Form_Id_Not_In_Form_Tag = 'Form_Id_Not_In_Form_Tag',
+    Form_Id_Not_In_Form_Tag ,   // = 'Form_Id_Not_In_Form_Tag',
 
     /**
      * Provided `form id` was already initialized by other {@link CleverForm} instance.
@@ -142,5 +145,38 @@ export enum Error_Code {
      * ```
      * 
      */
-    Form_Already_Initialized = 'Form_Already_Initialized',
+    Form_Already_Initialized,  // = 'Form_Already_Initialized',
+
+    /**
+     * Unknow rule name used
+     */
+    Unknown_Rule, 
+    
+    /**
+     * The passed parameter in the rule is mismatch to the desired typed.
+     * Mostly used in the rules ts files
+     */
+    Wrong_Rule_Param_Type,
+
+    /**
+     * Adding validation rule error
+     * 
+     * The {@link ValidationRule.addRule } method is trying to add a rulename that already exists.
+     * 
+     */
+    Rules_Collision,
+
+    /**
+     * The object parameter of the Custom rule has a problem on its properties checking data types
+     * 
+     * This error message is reused many times inside the addRule static method
+     * 
+     */
+    Custom_Rule_Error,
+
+    /**
+     * The object parameter of the Custom error message has a problem on its properties checking data types
+     * 
+     */
+    Custom_ErrMsg_Error,
 }

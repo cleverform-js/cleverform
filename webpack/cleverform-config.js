@@ -13,15 +13,21 @@ const AUTHOR = PACKAGE.author;
 module.exports = {
   name: NAME,
   entry: {
-    [`${NAME}-${VERSION}`]: "./src/webpack-entry.ts", // for development, uncompressed
-    [`${NAME}-${VERSION}.min`]: "./src/webpack-entry.ts", // for production, minified
+    // with version entry names
+    // [`${NAME}-${VERSION}`]: "./src/core/index.ts", // for development, uncompressed
+    // [`${NAME}-${VERSION}.min`]: "./src/core/index.ts", // for production, minified
+
+    // with out version names
+    [`${NAME}.dev`]: "./src/core/index.ts", // for development, uncompressed
+    [`${NAME}.prod.min`]: "./src/core/index.ts", // for production, minified
   },
   //   devtool: "inline-source-map",
   // devtool: 'source-map',
 
   output: {
     path: path.resolve(__dirname, "../dist"),
-    filename: `js/[name].js`,
+    // filename: `js/[name].js`,
+    filename: `[name].js`,
 
     globalObject: "this", // for window and NODE???
     libraryTarget: "umd", // Universal
@@ -77,8 +83,8 @@ module.exports = {
 
   plugins: [
     new webpack.BannerPlugin(`
-CleverForm version: ${require("../package.json").version}
-(c) 2020 ${AUTHOR}.
+CleverForm.js  v${require("../package.json").version}
+(c) 2020 ${AUTHOR}
 Released under the MIT License.
         `),
   ],

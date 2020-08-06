@@ -5,7 +5,7 @@ import { isPositive, isPositiveInt } from "../../util/index";
 /**
  * Minimum Selected files
  * 
- * Selected files must be greater than or equl to Minimum files;
+ * Selected files must be greater than or equl to min files;
  *
  */
 export const minFiles: RuleObject = {

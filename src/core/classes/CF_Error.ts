@@ -1,9 +1,9 @@
- import { Error_Code as Ecode, Error_Type as Etype, App } from "../global/index";
-import { CF_Error_Properties} from '../interfaces/CF_Error'
+ import { Error_Code as Ecode, App } from "../global/index";
+import { CF_Error_Properties} from '../interfaces/CF_Error_Properties'
 
 
 /**
- * CleverForm Errors object structure.
+ * CleverForm Error object structure.
  * Instances used to be `thrown` for CF customized error log/display in the console.
  * Thrown instances will be `catch` in the {@link CleverForm.constructor} .
  * 
@@ -13,37 +13,26 @@ class CF_Error implements CF_Error_Properties{
 
     /**
      * Initialize CleverForm Error and automatically log in the console.
-     * @param code Library Error Code based on {@link Error_Code } Enum. It will be use to get errorDetail.
-     * @param dynamicMsgDynamic Message that may contain helpul concrete data about the error.
+     * @param code Library Error Code based on {@link Error_Code } Enum. It will be use to get error details/solutions in the documentation.
+     * @param concreteMsg Message that may contain helpul concrete data about the error.
      * 
      */
-    constructor(code: Ecode, private readonly dynamicMsg?: string) {
+    constructor(code: Ecode, private readonly concreteMsg?: string) {
 
         let details = this.getDetails(code)
         
         this.code = details.code
-        this.type = details.type
         this.desciption = details.desciption
-        this.solutions = details.solutions
         
         this.log()
 
     }
 
     /**
-     * Error code, its value is `number`.
-     * Value must be based on {@link Ecode} Enumeration.
+     * Value must be based on {@link Error_Code} Enumeration.
      * 
      */
     public readonly code: Ecode;
-    
-    /**
-     * Error type, its value is `string`.
-     * Value must be based on {@link Etype} Enumeration.
-     * 
-     */
-
-    public readonly type: Etype;
 
     /**
      * Error descriptions based on {@link CF_Error.code | code}
@@ -51,29 +40,21 @@ class CF_Error implements CF_Error_Properties{
      */
     public readonly desciption: string;
 
-    /***
-     * The solutions for the error.
-     * Array of strings.
-     * 
-     */
-    public readonly solutions: string[] | null;
 
 
     /**
      * Displaying Error details in Console for fast debugging.
     * 1. Console the Error details.
-    * 2. Display error solutions, if their is available.
+    * 2. Display error solutions link in the documentation with .
     *
     */
     private log(){
 
         // Line 1:  Print error details
-        console.error(`[${App.Initial} warning] : ${this.desciption} ${ this.dynamicMsg || '' }  \n\n [Error Code: ${this.code}] - ${this.type}`)
+        console.error(`[${App.Initial} error] : ${this.desciption} ${ this.concreteMsg || '' } [Error Code: ${this.code}]`)
 
-        // Line 2:   Print  possible solutions with warn(orange log) if their is recommended solution
-        if (this.solutions) {
-            console.warn(`Posible solution/s:\n\n- ${this.solutions.join('\n- ')} \n\n`)
-        }
+        // Line 2:   Print solutions link with warn(yellow log)
+        console.warn(`Read more: www.cleverform.org/error-code#${this.code}`)
 
     }
 
@@ -90,35 +71,41 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Form_Not_Found,
-                    type: Etype.Init_Error,
                     desciption: 'Form not found in the DOM with the provided `form id`.',
-                    solutions: [
-                        'Double Check your `form id` in HTML code.',
-                        'Must match the provided `id` propery/element inside `configObject` parameter of `CleverForm(configObject)`.'
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+                    
+                    // solutions: [
+                    //     'Double Check your `form id` in HTML code.',
+                    //     'Must match the provided `id` propery/element inside `configObject` parameter of `CleverForm(configObject)`.'
+                    // ]
                 }
 
             case Ecode.Form_Id_Not_In_Form_Tag:
 
                 return {
                     code: Ecode.Form_Id_Not_In_Form_Tag,
-                    type: Etype.Init_Error,
                     desciption: "Provided `form id` was used by non `<form>` tag/element in the DOM.",
-                    solutions: [
-                        'Use your provided `form id` in a `<form>` tag only.',
-                        'Other HTML tag\'s id attribute must NOT be the same by your `form id`.'
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+
+                    // solutions: [
+                    //     'Use your provided `form id` in a `<form>` tag only.',
+                    //     'Other HTML tag\'s id attribute must NOT be the same by your `form id`.'
+                    // ]
                 }
 
             case Ecode.Form_Already_Initialized:
 
                 return {
                     code: Ecode.Form_Already_Initialized,
-                    type: Etype.Init_Error,
                     desciption: 'Provided form id was already initialized by other CleverForm instance.',
-                    solutions: [
-                        'Instantiate provided form id only once.',
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+                    
+                    // solutions: [
+                    //     'Instantiate provided form id only once.',
+                    // ]
                 }
 
 
@@ -126,62 +113,59 @@ class CF_Error implements CF_Error_Properties{
 
                 return {
                     code: Ecode.Constructor_No_New_Keyword,
-                    type: Etype.Init_Error,
                     desciption: 'CleverForm is a `constructor` function and should be called with the `new` keyword.',
-                    solutions: [
-                        'Use `new` keyword before `CleverForm` to create a CleverForm instance',
-                        `Example: var myInstance = new CleverForm(dataObject);`,
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+
+                    // solutions: [
+                    //     'Use `new` keyword before `CleverForm` to create a CleverForm instance',
+                    //     `Example: var myInstance = new CleverForm(dataObject);`,
+                    // ]
+                }
+            
+            case Ecode.Unknown_Rule:
+
+                return {
+                    code: Ecode.Unknown_Rule,
+                    desciption: 'Unknown validation rule used.'
+                }
+
+            case Ecode.Rules_Collision:
+
+                return {
+                    code: Ecode.Rules_Collision,
+                    desciption: 'Rule names collision.'
+                }
+
+            
+            case Ecode.Custom_Rule_Error:
+
+                return {
+                    code: Ecode.Custom_Rule_Error,
+                    desciption: 'Custom validation rule error.'
+                }
+
+            case Ecode.Custom_ErrMsg_Error:
+
+                return {
+                    code: Ecode.Custom_ErrMsg_Error,
+                    desciption: 'Custom error-message problem.'
                 }
 
 
-            // case Error_Code:
-
-            //     return {
-            //         code: Error_Code,
-            //         type: Error_Type,
-            //         desciption: "",
-            //         solutions: [
-            //             ``,
-            //         ]
-            //     }
-
-
-            // case Error_Code:
-
-            //     return {
-            //         code: Error_Code,
-            //         type: Error_Type,
-            //         desciption: "",
-            //         solutions: [
-            //             ``,
-            //         ]
-            //     }
-
-
-            // case Error_Code:
-
-            //     return {
-            //         code: Error_Code,
-            //         type: Error_Type,
-            //         desciption: "",
-            //         solutions: [
-            //             ``,
-            //         ]
-            //     }
-
-
-
+                
 
             default:
                 return {
-                    code: Ecode.Unknown_Error_Code,
-                    type: Etype.Unknown_Error,
+                    code: Ecode.Unknown,
                     desciption: "Unknown CleverForm Error detected.",
-                    solutions: [
-                        'Submit issue request to the developer via Github',
-                        `Ask Google :)`
-                    ]
+
+                    // SOLUTIONS should be in the documentations (to save bytes), once added delete this comments.
+
+                    // solutions: [
+                    //     'Submit issue request to the developer via Github',
+                    //     `Ask Google :)`
+                    // ]
                 }
         }
     }

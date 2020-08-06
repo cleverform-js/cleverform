@@ -1,7 +1,7 @@
 import { RuleObject } from "../../types/index";
 
 /**
- * The field under validation must be checked to return True.
+ *  This is intended for checkbox field. The field under validation must be accepted/checked.
  * 
  */
 export const accepted: RuleObject = {

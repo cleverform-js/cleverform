@@ -1,7 +1,7 @@
 import { RuleObject } from "../../types/index";
 
 /**
- * The field under validation must be present and the value must not be falsy value.
+ * The field under validation is required and must have a value..
  *
  */
 export const required: RuleObject = {

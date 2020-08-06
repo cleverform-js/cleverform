@@ -47,7 +47,7 @@ const regForm = new CleverForm({
         onError: function(errors, errorsCount, attemptsWithError) {
 
             // Your codes here ...
-            console.clear();
+            // console.clear();
             console.log("Form has validation error.");
 
             console.log("Errors object: ", errors);
@@ -63,7 +63,7 @@ const regForm = new CleverForm({
             // Your codes here ...
             // You can submit `formData` object via XHR (ex: AJAX , fetch and axios)..
 
-            console.clear();
+            // console.clear();
             console.log("Success , Form has No error.");
 
             console.log("validatedData Object: ", validatedData);
@@ -83,3 +83,12 @@ const regForm = new CleverForm({
 });
 
 console.log(regForm);
+
+var h3 = document.getElementsByTagName("h3")[0];
+
+h3.addEventListener('click', function(e) {
+
+    const rawData = regForm.reset();
+    console.log(rawData)
+    
+})

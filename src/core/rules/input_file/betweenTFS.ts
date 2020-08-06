@@ -5,7 +5,7 @@ import { isPositive, fileSizeUnits, convertFileSize } from "../../util/index";
 /**
  * Between Total File Size
  *
- * All selected files under validation must have TOTAL file size between specified :min and :max size.
+ * All selected files under validation must have a TOTAL file size between specified min and max size.
  *
  * Min and max are inclusive!
  *
