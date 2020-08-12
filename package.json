@@ -1,6 +1,6 @@
 {
   "name": "cleverform",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CleverForm is a JavaScript library for fast, straightforward and elegant HTML form validations.",
   "main": "dist/cleverform.dev.js",
   "unpkg": "dist/cleverform.dev.js",
