@@ -37,7 +37,7 @@
 export interface CssClass {
 
     /**
-     * CSS class to be injected when Field is success or error free.
+     * CSS class to be injected when Field has successful validation or error-free.
      * 
      * 
      * @default `cf-field-success`
@@ -46,7 +46,7 @@ export interface CssClass {
     fieldSuccess?: string;
 
     /**
-     * CSS class to be injected for Field with error.
+     * CSS class to be injected for Field with an error.
      * 
      * @default `cf-field-error`
      * 

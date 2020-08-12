@@ -110,17 +110,19 @@ export interface Form_Events {
      * 
      * Events if a form has no error in form validation rules when form is submitted.
      * 
-     * You can pass 2 helping parameters to your callback function that holds information about the errors.
+     * You can pass 3 helping parameters to your callback function that holds information about the errors.
      * 
      * Parameters are:
      * 
      * @validatedData  Object of form fields data, [fieldName] : [field Value] value pairs.
+     * @formData  validated data in aFormData instance structure. Can then be easily sent using the XMLHttpRequest.send() method.
      * @formSubmit  This is a DOM form.submit method, when you invoke this the form will be submitted via `Normal Form Submission`(ex. if you are submitting it via `PHP` )
      * 
      * @event
      */
     onSuccess?: (
         validatedData?: { [fieldName: string]: string },
+        formData? : FormData,
         formSubmit?: any // any to be changed?
     ) => void
 }

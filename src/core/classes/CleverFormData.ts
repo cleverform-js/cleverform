@@ -531,7 +531,8 @@ export class CleverFormData extends EventEmitter implements InternalProperties{
       // check  if has no error
       if (errorsCount === 0) {
 
-         console.warn("Success! no error!, delay of : " + (this.settings?.submitDelay || Default.Submit_Delay))
+         //for debugging
+         // console.warn("Success! no error!, delay of : " + (this.settings?.submitDelay || Default.Submit_Delay))
 
          //delay depends on submit delay
          setTimeout(() => {

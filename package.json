@@ -1,6 +1,6 @@
 {
   "name": "cleverform",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CleverForm is a JavaScript library for fast, straightforward and elegant HTML form validations.",
   "main": "dist/cleverform.dev.js",
   "unpkg": "dist/cleverform.dev.js",
@@ -8,10 +8,6 @@
   "files": [
     "dist/*.js"
   ],
-
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
     "start": "webpack-dev-server --mode development --open-page '/examples' ",
     "dev": "webpack --mode development",
@@ -49,9 +45,7 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
-    
     "@types/source-map": "^0.5.2",
     "ts-polyfill": "^3.8.2"
   }
-  
 }

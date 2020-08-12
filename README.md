@@ -8,7 +8,7 @@
 > CleverForm is a JavaScript library for fast, straightforward and elegant💕 HTML form validations
 
 
-📜 Visit <a href='https://cleverform.netlify.app/' target='_new'>cleverform</a> official documentation.
+📜 Visit <a href='https://cleverform.org' target='_new'>cleverform.org</a> for official documentation.
 
 
 ## Introduction
@@ -27,6 +27,7 @@ It's a 1 stop shop javascript library that handles all forms related functionali
 <br/>
 <i>- Douglas Crockford, <a target='_new' title='Book about Javascript'  href='https://www.goodreads.com/book/show/2998152-javascript'>JavaScript: The Good Parts 📖 </a></i> 
 
+<br/>
 One of the most challenging parts of web development is form validations.
 
 __Javascript__ alone has no built-in form validation functionalities.
@@ -77,7 +78,7 @@ But by using CleverForm, this vulnerability is solved.
 
 ## Sample Usage
 
-For more details about installations and implementation, visit <a href='https://cleverform.netlify.app/' target='_new'>cleverform</a> official documentation.
+For more details about installations and implementation, visit <a href='https://cleverform.org' target='_new'>cleverform.org</a> for official documentation.
 
 #### 👉 Create your form
 
