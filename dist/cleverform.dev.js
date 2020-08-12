@@ -1,6 +1,6 @@
 /*!
  * 
- * CleverForm.js  v0.1.0
+ * CleverForm.js  v0.1.2
  * (c) 2020 Jose Clet II
  * Released under the MIT License.
  *         
