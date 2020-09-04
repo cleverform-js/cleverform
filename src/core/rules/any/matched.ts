@@ -15,8 +15,7 @@ export const matched: RuleObject = {
         if (!ruleParamsStr)
             throw (`Field '${fieldName}' - '${this.name}' rule expects 'field name' parameter for matching.`);
 
-        let paramsArr = ruleParamsStr.split(',')
-        let fieldToMatch = paramsArr[0]
+        let [fieldToMatch] = ruleParamsStr.split(',')
 
         if (!field?.parentForm.formNode.querySelector(`input[name="${fieldToMatch}"]`) )
             throw (`Field '${fieldName}' - '${this.name}' rule matching field '${fieldToMatch}' does not exists in the form.`);
@@ -33,7 +32,7 @@ export const matched: RuleObject = {
 
     validate: function (value, params,fieldNode , field) {
         
-        let fieldToMatch = params!.fieldToMatch;
+        let { fieldToMatch } = params!;
         let fieldToMatch_value = field?.parentForm.fields[fieldToMatch].val()
 
         return value === fieldToMatch_value
