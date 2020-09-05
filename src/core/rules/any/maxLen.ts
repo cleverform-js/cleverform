@@ -17,7 +17,7 @@ export const maxLen: RuleObject = {
             throw (`Field '${fieldName}' - '${this.name}' rule expects an integer parameter.`);
 
         let paramsArr = ruleParamsStr.split(',')
-        let max = paramsArr[0]
+        let [max] = paramsArr
 
         if (!isPositiveInt(max))
             throw (`Field '${fieldName}' - '${this.name}' rule expects a positive integer parameter. Param '${max}' detected.`);
