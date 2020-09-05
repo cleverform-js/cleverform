@@ -6,7 +6,7 @@ const regForm = new CleverForm({
   // The validation rules per field's name, one or many validation rules per field seperated by pipe '|'
   rules: {
     f_name: "required | minLen:2 | maxLen:50",
-    l_name: "required | betweenLen:2,50",
+    l_name: "required | betweenLen:2,5",
     email: "required | email",
     password: "required | minLen:6 ",
     confirm_password: "required| matched:password",

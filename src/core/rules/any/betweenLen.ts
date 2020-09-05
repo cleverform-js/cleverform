@@ -19,8 +19,7 @@ export const betweenLen: RuleObject = {
             throw (`Field '${fieldName}' - '${this.name}' rule expects 2 integer parameters.`);
 
         let paramsArr = ruleParamsStr.split(',')
-        let min = paramsArr[0]
-        let max = paramsArr[1]
+        let [min, max] = paramsArr
 
         if ( !isPositiveInt(min) )
             throw (`Field '${fieldName}' - '${this.name}' rule 1st parameter must be positive integer. Param '${min}' detected.`);
@@ -45,10 +44,13 @@ export const betweenLen: RuleObject = {
     },
 
     validate: function (value, params) {
+        
         value = <string>value
-        let length = value.trim().length
 
-        return length <= params!.max && length >= params!.min
+        let length = value.trim().length
+        let { max, min } = params!
+
+        return length <= max && length >= min
     }
 
 }
