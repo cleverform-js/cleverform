@@ -17,7 +17,7 @@ export const minLen: RuleObject = {
             throw (`Field '${fieldName}' - '${this.name}' rule expects an integer parameter.`);
 
         let paramsArr = ruleParamsStr.split(',')
-        let min = paramsArr[0]
+        let [min] = paramsArr
 
         if (!isPositiveInt(min))
             throw (`Field '${fieldName}' - '${this.name}' rule expects a positive integer parameter. Param '${min}' detected.`);
